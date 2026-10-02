@@ -5,7 +5,7 @@ import { Audio } from './systems/Audio';
 export const W = 480;
 export const H = 270;
 export const RENDER_SCALE = 2;
-export const FONT = "ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace";
+export const FONT = "'Noto Sans Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace";
 
 export const COLORS = {
   bg: '#181425', panel: '#262b44', panel2: '#3a4466', text: '#ffffff', dim: '#8b9bb4', accent: '#feae34',

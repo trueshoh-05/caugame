@@ -11,7 +11,7 @@ test('title screen renders without console errors', async ({ page }) => {
 });
 
 test('portrait phone shows the rotate screen', async ({ browser }) => {
-  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true, ignoreHTTPSErrors: true });
   const page = await ctx.newPage();
   await page.goto('/?debug');
   await expect(page.locator('#rotate')).toBeVisible();

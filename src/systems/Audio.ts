@@ -1,5 +1,6 @@
 import { music } from './Data';
 import { Save } from './Save';
+import { soundFiles } from './AssetRegistry';
 
 /**
  * All sound is synthesised at runtime. Each effect is a small jsfxr-like parameter set.
@@ -40,6 +41,14 @@ class AudioSystem {
   private nextTime = 0;
   private timer: number | null = null;
   played: Record<string, number> = {};
+  private buffers = new Map<string, AudioBuffer>();
+
+  /** Decode any sound files registered in the AssetRegistry; they then replace the synth. */
+  private loadFiles(): void {
+    for (const [id, url] of soundFiles) {
+      fetch(url).then((r) => r.arrayBuffer()).then((b) => this.ctx!.decodeAudioData(b)).then((buf) => this.buffers.set(id, buf)).catch(() => { /* keep synth */ });
+    }
+  }
 
   /** Must be called from a user gesture. */
   unlock(): void {
@@ -57,6 +66,7 @@ class AudioSystem {
     this.noise = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
     const ch = this.noise.getChannelData(0);
     for (let i = 0; i < len; i++) ch[i] = Math.random() * 2 - 1;
+    this.loadFiles();
     if (this.track) this.startLoop();
   }
 
@@ -68,8 +78,15 @@ class AudioSystem {
 
   play(id: string, pitch = 1): void {
     this.played[id] = (this.played[id] ?? 0) + 1;
+    if (!this.ctx || !this.master) return;
+    const file = this.buffers.get(id);
+    if (file) {
+      const src = this.ctx.createBufferSource();
+      src.buffer = file; src.playbackRate.value = pitch; src.connect(this.master); src.start();
+      return;
+    }
     const s = SFX[id];
-    if (!s || !this.ctx || !this.master) return;
+    if (!s) return;
     this.tone(s, pitch, this.ctx.currentTime, this.master);
   }
 

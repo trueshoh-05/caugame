@@ -54,9 +54,11 @@ export class QuestCardScene extends Phaser.Scene {
     ry = field(t('questCard.guidedIndependentStudy'), pp.guidedIndependentStudy, rx, ry + 1, colW);
     void ly; void ry;
 
-    const accept = () => { Input.clear(); this.scene.stop(); this.d.onAccept(); };
-    button(this, W / 2, y0 + h - 14, 120, 16, t('ui.accept'), accept, '#124e89');
-    this.add.rectangle(0, 0, 1, 1, NUM(COLORS.bg)).setVisible(false);
-    this.events.on('update', () => { if (Input.consume('interact')) accept(); });
+    button(this, W / 2, y0 + h - 14, 120, 16, t('ui.accept'), () => this.accept(), '#124e89');
+    void NUM; void COLORS;
   }
+
+  private accept(): void { Input.clear(); this.scene.stop(); this.d.onAccept(); }
+
+  update(): void { if (Input.consume('interact')) this.accept(); }
 }

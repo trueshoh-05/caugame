@@ -98,7 +98,13 @@
     "destroyed": "Paper destroyed",
     "nextStage": "Next: {stage}",
     "courseComplete": "Course complete",
-    "stageOf": "Stage {n}/{total}"
+    "stageOf": "Stage {n}/{total}",
+    "enterNamePrompt": "Your name for the transcript:",
+    "nameLabel": "Name: {name}",
+    "noName": "Student",
+    "creditsTitle": "Credits",
+    "creditsBody": "Made for CAU computer science students.\nSprites drawn in code · Endesga 32 palette · sound synthesised live.\nFont: Noto Sans Mono (SIL Open Font License).\nEngine: Phaser 3 (MIT). Professors appear only under their in-game names.\nMacCoffee and Nescafe appear as text only.",
+    "back": "Back"
   },
   "questCard": {
     "courseDescription": "Course description",

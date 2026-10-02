@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('phone landscape 844x390: joystick moves, auto-fire shoots', async ({ browser }) => {
-  const ctx = await browser.newContext({ viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true });
+  const ctx = await browser.newContext({ viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true, ignoreHTTPSErrors: true });
   const page = await ctx.newPage();
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));

@@ -1,0 +1,294 @@
+{
+  "_about": "Oʻzbekcha matn. Kalitlar en.json bilan bir xil. lang:'uz' qatorlari va formulalar oʻzgarmaydi; {tic} ni dialog tizimi toʻldiradi.",
+  "ui": {
+    "title": "CAU: Semester Survivor",
+    "tapToStart": "Boshlash uchun bosing",
+    "chooseLanguage": "Til",
+    "enterName": "Talaba ismi",
+    "sanity": "Aql-hush",
+    "deadline": "Muddat",
+    "grade": "Baho",
+    "retake": "Qayta topshirish",
+    "submitted": "Topshirildi",
+    "lateSubmission": "Kechikish: -10",
+    "transcript": "Transkript",
+    "gpa": "GPA",
+    "share": "Ulashish",
+    "playAgain": "Keyingi semestr",
+    "callProfessor": "Yordam",
+    "mute": "Ovoz",
+    "rotateDevice": "Telefonni burang",
+    "credits": "Kreditlar",
+    "newGame": "Yangi semestr",
+    "continue": "Davom etish",
+    "talk": "E: gaplashish",
+    "enter": "E: kirish",
+    "tapToTalk": "Gaplashish",
+    "tapToEnter": "Kirish",
+    "locked": "Yopiq.",
+    "lockedNeedQuest": "Yopiq. Avval {prof} bilan gaplashing.",
+    "courseDone": "Kurs tugadi: {letter}",
+    "transcriptLocked": "Registrator: uchala baho bilan keling.",
+    "transcriptOffice": "Registrator ofisi",
+    "accept": "Qabul qilish",
+    "close": "Yopish",
+    "skip": "Oʻtkazib yuborish",
+    "next": "Keyingi",
+    "retry": "Qayta topshirish",
+    "continueStage": "Davom",
+    "backToCampus": "Kampusga",
+    "stage": "Bosqich",
+    "wave": "Toʻlqin {n}/{total}",
+    "boss": "BOSS",
+    "stageCleared": "Topshirildi!",
+    "stageFailed": "Aql-hush: 0",
+    "mercyPass": "Rahm-shafqat: C (70)",
+    "score": "Ball",
+    "coursePercent": "Kurs",
+    "letter": "Harf",
+    "creditsEarned": "Kredit +{n}",
+    "shop": "Noutbuk yangilanishlari",
+    "buy": "Sotib olish",
+    "owned": "Bor",
+    "notEnough": "Kredit yetmaydi",
+    "assistUsed": "Yordam ishlatildi",
+    "assistReady": "H: yordam",
+    "wifiDead": "Wi-Fi yoʻq",
+    "coffee": "Qahva",
+    "dash": "Sakrash",
+    "achievement": "Yutuq: {name}",
+    "objective": "Vazifa: {text}",
+    "objTalk": "{prof} bilan gaplashing",
+    "objEnter": "{room}ga kiring",
+    "objTranscript": "transkriptni oling (shimoli-gʻarbiy bino)",
+    "semesterDone": "Semestr tugadi",
+    "total": "Jami",
+    "course": "Kurs",
+    "resume": "Davom: {course}",
+    "deadlinePassed": "23:59 — KECHIKDI",
+    "frozen": "MUZLATILDI",
+    "portalDown": "503: portal ishlamayapti",
+    "attendance": "Davomat!",
+    "missedAttendance": "Davomat oʻtkazildi: -5",
+    "eightAm": "Ertalab 8 dagi dars: qahvagacha sekin",
+    "shareSaved": "Rasm saqlandi",
+    "howToPlay": "WASD — yurish · sichqoncha — nishon · bosish — otish · Q/oʻng tugma — qahva · Space — sakrash · E — gaplashish · H — yordam",
+    "howToPlayTouch": "Chap barmoq — yurish · avtomatik otish · tugmalar: qahva, sakrash, yordam",
+    "reset": "Saqlashni oʻchirish",
+    "resetConfirm": "Yana bir bor bosing",
+    "language": "Til",
+    "soggy": "hoʻl",
+    "blocked": "Feynman himoya qildi!",
+    "pickupFood": "+{n} aql-hush",
+    "pickupCoffee": "+1 {name}",
+    "pickupExtension": "Muddat uzaytirildi!",
+    "teammatesNote": "Guruhdoshlaringiz «yordam beryapti».",
+    "subtitle": "// Central Asian University, Toshkent",
+    "loading": "Yuklanmoqda...",
+    "compiling": "kompilyatsiya...",
+    "emptyClip": "error: expected ';'",
+    "extraSheets": "Qoʻshimcha varaqlar!",
+    "submit": "Topshirish",
+    "feynman": "Feynman: 1 zarba qaytarildi",
+    "stageScore": "Bosqich bali",
+    "sanityLeft": "Qolgan aql-hush",
+    "onTime": "Oʻz vaqtida",
+    "late": "Kech",
+    "attendanceMissedShort": "Davomat oʻtkazildi",
+    "destroyed": "Yoʻq qilingan qogʻoz",
+    "nextStage": "Keyingi: {stage}",
+    "courseComplete": "Kurs tugadi",
+    "stageOf": "Bosqich {n}/{total}",
+    "enterNamePrompt": "Transkript uchun ismingiz:",
+    "nameLabel": "Ism: {name}",
+    "noName": "Talaba",
+    "creditsTitle": "Mualliflar",
+    "creditsBody": "CAU informatika talabalari uchun yaratilgan.\nSpritelar kodda chizilgan · Endesga 32 palitrasi · ovoz jonli sintez qilinadi.\nShrift: Noto Sans Mono (SIL Open Font License).\nDvigatel: Phaser 3 (MIT). Oʻqituvchilar faqat oʻyindagi ismlari bilan.\nMacCoffee va Nescafe faqat matn sifatida.",
+    "back": "Orqaga"
+  },
+  "questCard": {
+    "courseDescription": "Kurs tavsifi",
+    "objectives": "Maqsadlar",
+    "learningOutcomes": "Taʼlim natijalari",
+    "gradeComponents": "Baho tarkibi",
+    "textbook": "Darsliklar va manbalar",
+    "coreReading": "Asosiy adabiyot",
+    "additionalReading": "Qoʻshimcha adabiyot",
+    "guidedIndependentStudy": "Mustaqil taʼlim",
+    "noData": "No data",
+    "components": {
+      "ca": "Joriy nazorat",
+      "midterm": "Oraliq",
+      "projects": "Loyihalar",
+      "final": "Yakuniy"
+    },
+    "professor": "Oʻqituvchi",
+    "room": "Xona",
+    "portalHeader": "CAU portali · Kurs sahifasi"
+  },
+  "professors": {
+    "prof_metroman": {
+      "quest": [
+        "Xoʻsh. Muhandislik fizikasi. Mexanika, elektromagnetizm {tic}.",
+        "Bu yerda joriy nazorat yoʻq. Faqat oraliq va yakuniy {tic}.",
+        "Ikkalasi ham laboratoriyada. Ikkalasi ham katta. Qani, boring."
+      ],
+      "tip": [
+        "Harakatlaning. Tinch turgan jism tinch turadi va zarba yeydi {tic}.",
+        "U samolyotga aylansa, soyani toping va undan chiqing {tic}.",
+        "Qahvani qoʻshimcha varaqlar uchun saqlang {tic}.",
+        "Yakuniy — oltmish foiz. Unga oltmish foiz hurmat bilan qarang {tic}."
+      ],
+      "bark": [
+        "Energiyaning saqlanishi! Sizniki tugayapti {tic}.",
+        "Bu simulyatsiyada yoʻq edi.",
+        "Vektorlar. Vektorlarga ehtiyot boʻling {tic}."
+      ],
+      "assist": [
+        "Vaqt sekinlashuvi. Sakkiz soniyangiz bor, nisbiylik {tic}."
+      ],
+      "win": [
+        "Yaxshi. Natija analitik bashoratga mos keldi {tic}. Kamdan-kam."
+      ],
+      "fail": [
+        "Hm. Boshlangʻich shartlarni tekshiring {tic}. Yana."
+      ],
+      "idle": [
+        "MOSFET, mantiqiy ventillar {tic}. Hammasining tagida fizika.",
+        "Mustaqil taʼlim — yetmish soat. Men sanadim {tic}."
+      ]
+    },
+    "prof_admin": {
+      "quest": [
+        "Xush kelibsiz, xush kelibsiz. Dasturlash. Hammasi yaxshi boʻladi.",
+        "Kvizlar, kichik oraliq, loyiha va yakuniy bor. Yakuniy — yarmi. Xavotir olmang.",
+        "Nuqta-vergullarni oling. C++ da hammasi kerak boʻladi."
+      ],
+      "tip": [
+        "Avval kichik kvizlar, ular tez. Keyin qalin laboratoriya ishlari.",
+        "Loyiha varaqlarga sochilsa, varaqlar bilan shugʻullaning. Men sizga ishonaman.",
+        "Noutbuk «kompilyatsiya» desa, orqaga turing va kuting. Bu normal. U doim kompilyatsiya qiladi.",
+        "Siz stressdasiz. Men bilaman. Bu tom maʼnoda mening tadqiqotim."
+      ],
+      "bark": [
+        "Juda yaxshi!",
+        "Hechqisi yoʻq, hechqisi yoʻq.",
+        "Stress darajasi oshyapti. Nafas oling."
+      ],
+      "assist": [
+        "Stress aniqlandi. Tartibga solinmoqda. Mana, yaxshiroqmi?"
+      ],
+      "win": [
+        "Ajoyib! Bilardim, qila olasiz. Baribir oʻtkazib yuborardim."
+      ],
+      "fail": [
+        "Oh. Mayli... keldingiz, bu muhim. C qoʻyamiz va davom etamiz, xoʻpmi?"
+      ],
+      "idle": [
+        "Hamma tushundimi? Yaxshi. Baribir yana tushuntiraman.",
+        "Mening xonam 264. Istalgan vaqtda keling. Xato xabaringizni olib keling."
+      ]
+    },
+    "prof_bezout": {
+      "quest": [
+        "Muhandislar uchun matematik analiz.",
+        {
+          "formula": "lim (deadline -> 0) of effort = infinity"
+        },
+        {
+          "text": "Qani, boshladik.",
+          "lang": "uz"
+        }
+      ],
+      "tip": [
+        {
+          "formula": "distance(you, paper) > 0  =>  you pass"
+        },
+        "Burchakda turmang. Burchak — lokal minimum.",
+        "Kvizlar sizga yaqinlashadi. Uzoqlashing.",
+        "Yakuniy uzluksiz. U toʻxtamaydi. Siz ham toʻxtamang."
+      ],
+      "bark": [
+        {
+          "formula": "Sanity -> 0 ?"
+        },
+        "Trivial.",
+        {
+          "text": "Barakalla!",
+          "lang": "uz"
+        }
+      ],
+      "assist": [
+        "Izometriya. Barcha masofalar saqlanadi. Besh soniya."
+      ],
+      "win": [
+        {
+          "formula": "Q.E.D."
+        },
+        {
+          "text": "Barakalla. Good work.",
+          "lang": "uz"
+        }
+      ],
+      "fail": [
+        "Isbotda boʻshliq bor. Yana bir bor.",
+        {
+          "text": "Hechqisi yo'q. Yana bir marta.",
+          "lang": "uz"
+        }
+      ],
+      "idle": [
+        "Banax fazosida bu osonroq boʻlardi.",
+        "445-xona. Faqat javobni emas, savolni ham olib keling."
+      ]
+    }
+  },
+  "students": [
+    "Yakuniy ellik foiz dedimi?",
+    "Menda nuqta-vergul yoʻq. Men Python talabasiman.",
+    "Portalda «No data». Hamma joyda.",
+    "Bro, Wi-Fi ishlayaptimi?",
+    "Loyihani boshladim. Faylni ochdim.",
+    "Bitta MacCoffee va men hamma narsaga qodirman. Qirq daqiqa."
+  ],
+  "loadingTips": [
+    "Muddat kunidan oldin boshlash nazariy jihatdan mumkin.",
+    "Mustaqil taʼlim: 70 soat. Kim yoʻnaltirishi koʻrsatilmagan.",
+    "Kurs tavsifi: No data.",
+    "Massivlar 0 dan boshlanadi. Motivatsiya ham.",
+    "Nuqta-vergul cheksiz. Aql-hush emas.",
+    "Hoʻl qogʻoz — sekin qogʻoz. Qahva oting.",
+    "Yakuniy — bahoning yarmi. Qolgan yarmi ham yakuniy, hissiy jihatdan."
+  ],
+  "terminal": [
+    "warning: unused variable 'hope'",
+    "error: expected ';'",
+    "note: deadline declared here",
+    "Segmentation fault (core dumped)",
+    "warning: comparison between sleep and coffee is always false",
+    "0 errors, 47 warnings. Ship it."
+  ],
+  "enemies": {
+    "quiz": "Kviz",
+    "homework": "Uy vazifasi",
+    "lab_report": "Laboratoriya ishi",
+    "project": "Loyiha",
+    "group_project": "Guruh loyihasi",
+    "loose_page": "Varaq",
+    "midterm_paper": "Oraliq",
+    "final_exam": "Yakuniy"
+  },
+  "easterEggs": {
+    "room404": "404-xona: topilmadi.",
+    "outOfBounds": "index out of bounds",
+    "floor0": "0-qavat",
+    "undefinedStudent": "undefined",
+    "sudoName": "Ruxsat berildi. Hech narsa oʻzgarmaydi.",
+    "construction": "Funksiya hali qilinmagan."
+  },
+  "achievements": {
+    "etc_and_whatnot": "Etc. and Whatnot",
+    "curved": "Curved",
+    "qed": "Q.E.D."
+  }
+}

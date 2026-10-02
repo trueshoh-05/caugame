@@ -1,0 +1,741 @@
+{
+  "generation": 0,
+  "date": "2026-10-02T22:38:03.300Z",
+  "overall": 9,
+  "categories": [
+    {
+      "id": "build",
+      "name": "Build, tooling & stability",
+      "weight": 1,
+      "score": 8.8,
+      "checks": 8
+    },
+    {
+      "id": "tests",
+      "name": "Automated tests",
+      "weight": 1.25,
+      "score": 9.5,
+      "checks": 2
+    },
+    {
+      "id": "rules",
+      "name": "Hard rules (tone, names, assets)",
+      "weight": 1,
+      "score": 8.9,
+      "checks": 7
+    },
+    {
+      "id": "data",
+      "name": "Data-driven design",
+      "weight": 0.75,
+      "score": 10,
+      "checks": 7
+    },
+    {
+      "id": "shooter",
+      "name": "Core shooter & game feel",
+      "weight": 1.5,
+      "score": 10,
+      "checks": 11
+    },
+    {
+      "id": "campus",
+      "name": "Campus map",
+      "weight": 1,
+      "score": 10,
+      "checks": 7
+    },
+    {
+      "id": "systems",
+      "name": "Course flow & systems",
+      "weight": 1.25,
+      "score": 8.8,
+      "checks": 6
+    },
+    {
+      "id": "touch",
+      "name": "Phone-first touch play",
+      "weight": 1.25,
+      "score": 10,
+      "checks": 8
+    },
+    {
+      "id": "performance",
+      "name": "Performance",
+      "weight": 0.75,
+      "score": 9.2,
+      "checks": 4
+    },
+    {
+      "id": "plan",
+      "name": "Completeness vs GAME_PLAN (M4–M6)",
+      "weight": 1,
+      "score": 4.4,
+      "checks": 9
+    }
+  ],
+  "feedback": [
+    {
+      "category": "plan",
+      "id": "Russian and Uzbek text files (same keys)",
+      "weight": 2,
+      "score": 0,
+      "detail": "missing",
+      "fix": "Add src/data/text/ru.json and uz.json with the same keys as en.json.",
+      "impact": 0.2
+    },
+    {
+      "category": "systems",
+      "id": "Engineering Physics completes start to finish (scripted player)",
+      "weight": 2,
+      "score": 0.5,
+      "detail": "1/2 stages",
+      "fix": "A scripted invulnerable player must be able to clear every stage by shooting.",
+      "impact": 0.15
+    },
+    {
+      "category": "build",
+      "id": "GitHub Pages deploy workflow",
+      "weight": 1.5,
+      "score": 0,
+      "detail": "missing",
+      "fix": "Add .github/workflows/*.yml that builds and deploys to GitHub Pages on push to main.",
+      "impact": 0.11
+    },
+    {
+      "category": "rules",
+      "id": "CREDITS.md present",
+      "weight": 1,
+      "score": 0,
+      "detail": "",
+      "fix": "Add CREDITS.md (even if v1 has no external assets, say so and credit the palette).",
+      "impact": 0.1
+    },
+    {
+      "category": "plan",
+      "id": "README with how to play",
+      "weight": 1,
+      "score": 0,
+      "detail": "missing",
+      "fix": "Add README.md with controls (desktop + phone), dev commands and the scorer.",
+      "impact": 0.1
+    },
+    {
+      "category": "plan",
+      "id": "language switch works (en / ru / uz)",
+      "weight": 1,
+      "score": 0,
+      "detail": "[[\"ru\",\"en\"],[\"uz\",\"en\"]]",
+      "fix": "Language picker must switch to ru and uz.",
+      "impact": 0.1
+    },
+    {
+      "category": "plan",
+      "id": "font covering Latin, Cyrillic and Uzbek (oʻ, gʻ)",
+      "weight": 1,
+      "score": 0.3,
+      "detail": "system monospace only",
+      "fix": "Load a font with Latin, Cyrillic and oʻ/gʻ (e.g. a Google Font with cyrillic subset) and fall back to monospace.",
+      "impact": 0.07
+    },
+    {
+      "category": "tests",
+      "id": "Playwright suite passes",
+      "weight": 4,
+      "score": 0.9375,
+      "detail": "15/16 passed · failing: Computer Programming can be completed by a scripted invulnerable player",
+      "fix": "Make every Playwright test pass.",
+      "impact": 0.06
+    },
+    {
+      "category": "plan",
+      "id": "easter eggs wired in",
+      "weight": 1,
+      "score": 0.5,
+      "detail": "3/6 missing: outOfBounds, floor0, sudoName",
+      "fix": "Use every joke in text.easterEggs somewhere in the game.",
+      "impact": 0.05
+    },
+    {
+      "category": "performance",
+      "id": "boots to the title screen quickly",
+      "weight": 1,
+      "score": 0.5,
+      "detail": "6185 ms",
+      "fix": "Speed up boot (paint the campus lazily, keep the bundle small).",
+      "impact": 0.05
+    },
+    {
+      "category": "plan",
+      "id": "menu features (name, language, credits, share)",
+      "weight": 1,
+      "score": 0.8333333333333334,
+      "detail": "missing: enterName",
+      "fix": "Add a student-name field, language picker, credits screen and share button.",
+      "impact": 0.02
+    },
+    {
+      "category": "data",
+      "id": "every t() key exists in en.json",
+      "weight": 2,
+      "score": 0.9896907216494846,
+      "detail": "missing: questCard.components.",
+      "fix": "Add the missing keys to src/data/text/en.json.",
+      "impact": 0
+    }
+  ],
+  "checks": [
+    {
+      "category": "build",
+      "id": "npm scripts",
+      "weight": 1,
+      "score": 1,
+      "detail": "all present",
+      "fix": "Add the missing npm scripts (dev, build, preview, test)."
+    },
+    {
+      "category": "build",
+      "id": "stack: Phaser 3 + TypeScript + Vite",
+      "weight": 1,
+      "score": 1,
+      "detail": "phaser, @playwright/test, typescript, vite",
+      "fix": "Use Phaser 3, TypeScript and Vite as CLAUDE.md requires."
+    },
+    {
+      "category": "build",
+      "id": "TypeScript strict",
+      "weight": 1,
+      "score": 1,
+      "detail": "",
+      "fix": "Set \"strict\": true in tsconfig.json."
+    },
+    {
+      "category": "build",
+      "id": "vite base './' (GitHub Pages)",
+      "weight": 1,
+      "score": 1,
+      "detail": "",
+      "fix": "Set base: './' in vite.config.ts."
+    },
+    {
+      "category": "build",
+      "id": "GitHub Pages deploy workflow",
+      "weight": 1.5,
+      "score": 0,
+      "detail": "missing",
+      "fix": "Add .github/workflows/*.yml that builds and deploys to GitHub Pages on push to main."
+    },
+    {
+      "category": "build",
+      "id": "typecheck passes",
+      "weight": 2,
+      "score": 1,
+      "detail": "",
+      "fix": "Fix TypeScript errors."
+    },
+    {
+      "category": "build",
+      "id": "production build passes",
+      "weight": 3,
+      "score": 1,
+      "detail": "",
+      "fix": "Fix the Vite build."
+    },
+    {
+      "category": "performance",
+      "id": "first load under 5 MB",
+      "weight": 2,
+      "score": 1,
+      "detail": "1.33 MB",
+      "fix": "Keep the shipped build under 5 MB (no reference images in dist)."
+    },
+    {
+      "category": "rules",
+      "id": "v1 ships no external art/audio files",
+      "weight": 2,
+      "score": 1,
+      "detail": "none",
+      "fix": "Version 1 must draw sprites in code and synthesise sound; anything else must be CC0/CC-BY and in CREDITS.md."
+    },
+    {
+      "category": "rules",
+      "id": "tone: no guns, blood or violence words",
+      "weight": 2,
+      "score": 1,
+      "detail": "clean",
+      "fix": "Weapon is a laptop, projectiles are semicolons and coffee. Remove violent vocabulary."
+    },
+    {
+      "category": "rules",
+      "id": "professors only appear by displayName",
+      "weight": 1,
+      "score": 1,
+      "detail": "Metroman, Prof. Admin Manzur, Prof. Bezout Argminov",
+      "fix": "Never store or show a professor's real name."
+    },
+    {
+      "category": "rules",
+      "id": "no imitated-accent dialog",
+      "weight": 1,
+      "score": 1,
+      "detail": "",
+      "fix": "Remove misspellings that imitate pronunciation."
+    },
+    {
+      "category": "rules",
+      "id": "professors cannot be damaged (no damage path to NPCs)",
+      "weight": 1,
+      "score": 1,
+      "detail": "",
+      "fix": "Professors and students must never be hittable."
+    },
+    {
+      "category": "rules",
+      "id": "mute button always available",
+      "weight": 1,
+      "score": 1,
+      "detail": "",
+      "fix": "Show a mute button on every screen."
+    },
+    {
+      "category": "rules",
+      "id": "CREDITS.md present",
+      "weight": 1,
+      "score": 0,
+      "detail": "",
+      "fix": "Add CREDITS.md (even if v1 has no external assets, say so and credit the palette)."
+    },
+    {
+      "category": "data",
+      "id": "every t() key exists in en.json",
+      "weight": 2,
+      "score": 0.9896907216494846,
+      "detail": "missing: questCard.components.",
+      "fix": "Add the missing keys to src/data/text/en.json."
+    },
+    {
+      "category": "data",
+      "id": "no hard-coded player-facing strings in scenes",
+      "weight": 1.5,
+      "score": 1,
+      "detail": "none",
+      "fix": "Move player-facing text into src/data/text/en.json and read it with t()."
+    },
+    {
+      "category": "data",
+      "id": "arena rooms exist as data (src/data/rooms)",
+      "weight": 1,
+      "score": 1,
+      "detail": "computer_lab, exam_hall, lecture_hall, physics_lab",
+      "fix": "Create a rect-based room file per arena in src/data/rooms/."
+    },
+    {
+      "category": "data",
+      "id": "balance numbers come from enemies.json",
+      "weight": 1.5,
+      "score": 1,
+      "detail": "",
+      "fix": "Read all balance numbers from enemies.json."
+    },
+    {
+      "category": "data",
+      "id": "no balance literals in Arena",
+      "weight": 1,
+      "score": 1,
+      "detail": "none",
+      "fix": "Move balance literals into enemies.json."
+    },
+    {
+      "category": "data",
+      "id": "AssetRegistry lets sprites be swapped for files",
+      "weight": 1,
+      "score": 1,
+      "detail": "",
+      "fix": "Keep an AssetRegistry mapping keys to code-drawn grids or files."
+    },
+    {
+      "category": "data",
+      "id": "sounds swappable via the registry too",
+      "weight": 0.5,
+      "score": 1,
+      "detail": "",
+      "fix": "Let the AssetRegistry map sound ids to optional audio files."
+    },
+    {
+      "category": "plan",
+      "id": "Russian and Uzbek text files (same keys)",
+      "weight": 2,
+      "score": 0,
+      "detail": "missing",
+      "fix": "Add src/data/text/ru.json and uz.json with the same keys as en.json."
+    },
+    {
+      "category": "plan",
+      "id": "README with how to play",
+      "weight": 1,
+      "score": 0,
+      "detail": "missing",
+      "fix": "Add README.md with controls (desktop + phone), dev commands and the scorer."
+    },
+    {
+      "category": "plan",
+      "id": "easter eggs wired in",
+      "weight": 1,
+      "score": 0.5,
+      "detail": "3/6 missing: outOfBounds, floor0, sudoName",
+      "fix": "Use every joke in text.easterEggs somewhere in the game."
+    },
+    {
+      "category": "plan",
+      "id": "all five hazards implemented",
+      "weight": 1,
+      "score": 1,
+      "detail": "portal_down, attendance_sheet, eight_am, deadline_wall, wifi_dead",
+      "fix": "Implement Deadline wall, Portal down, Wi-Fi drop, 8 a.m. class and Attendance sheet."
+    },
+    {
+      "category": "plan",
+      "id": "menu features (name, language, credits, share)",
+      "weight": 1,
+      "score": 0.8333333333333334,
+      "detail": "missing: enterName",
+      "fix": "Add a student-name field, language picker, credits screen and share button."
+    },
+    {
+      "category": "plan",
+      "id": "font covering Latin, Cyrillic and Uzbek (oʻ, gʻ)",
+      "weight": 1,
+      "score": 0.3,
+      "detail": "system monospace only",
+      "fix": "Load a font with Latin, Cyrillic and oʻ/gʻ (e.g. a Google Font with cyrillic subset) and fall back to monospace."
+    },
+    {
+      "category": "plan",
+      "id": "desktop + 844×390 screenshots in docs/screens",
+      "weight": 0.5,
+      "score": 1,
+      "detail": "4 desktop, 3 phone",
+      "fix": "Save desktop and phone screenshots to docs/screens/ (the tests do this)."
+    },
+    {
+      "category": "plan",
+      "id": "music for every context (data-driven sequencer)",
+      "weight": 1,
+      "score": 1,
+      "detail": "menu, campus, stage, midterm, final, results, retake",
+      "fix": "Add chiptune patterns for menu, campus, stage, mid-term, final, results and retake."
+    },
+    {
+      "category": "tests",
+      "id": "test suite exists",
+      "weight": 1,
+      "score": 1,
+      "detail": "5 spec files",
+      "fix": "Cover smoke, campus, course, systems and touch with Playwright specs."
+    },
+    {
+      "category": "performance",
+      "id": "boots to the title screen quickly",
+      "weight": 1,
+      "score": 0.5,
+      "detail": "6185 ms",
+      "fix": "Speed up boot (paint the campus lazily, keep the bundle small)."
+    },
+    {
+      "category": "campus",
+      "id": "every walkable tile reachable from playerStart",
+      "weight": 2,
+      "score": 1,
+      "detail": "9236/9236",
+      "fix": "Make sure no walkable area is sealed off."
+    },
+    {
+      "category": "campus",
+      "id": "collision grid matches campus.json tile for tile",
+      "weight": 2,
+      "score": 1,
+      "detail": "18720/18720",
+      "fix": "Build collisions straight from campus.json: only # and . block."
+    },
+    {
+      "category": "campus",
+      "id": "player walks on campus",
+      "weight": 1,
+      "score": 1,
+      "detail": "moved 23 px",
+      "fix": "Movement on campus is broken."
+    },
+    {
+      "category": "campus",
+      "id": "professor NPCs placed from campus.json",
+      "weight": 1,
+      "score": 1,
+      "detail": "",
+      "fix": "Place professors at campus.json npcs."
+    },
+    {
+      "category": "campus",
+      "id": "minimap and objective on campus",
+      "weight": 1,
+      "score": 1,
+      "detail": "Objective: talk to Prof. Admin Manzur",
+      "fix": "Show a minimap and the current objective on campus."
+    },
+    {
+      "category": "systems",
+      "id": "talking to a professor opens dialog then the portal quest card",
+      "weight": 2,
+      "score": 1,
+      "detail": "dialog=true quest=true",
+      "fix": "E near a professor should open the typewriter dialog, then the quest card."
+    },
+    {
+      "category": "systems",
+      "id": "accepting the quest unlocks the course",
+      "weight": 1,
+      "score": 1,
+      "detail": "",
+      "fix": "Accept should record the course and unlock its arena door."
+    },
+    {
+      "category": "campus",
+      "id": "south gate → north-west building in 20–30 s",
+      "weight": 1,
+      "score": 1,
+      "detail": "23.9 s",
+      "fix": "Tune campus walking speed so the crossing takes 20–30 s."
+    },
+    {
+      "category": "campus",
+      "id": "Wi-Fi dead zone disables the minimap",
+      "weight": 0.5,
+      "score": 1,
+      "detail": "",
+      "fix": "Hide the minimap inside wifi_dead zones."
+    },
+    {
+      "category": "shooter",
+      "id": "arena loads with stage from course components",
+      "weight": 1,
+      "score": 1,
+      "detail": "{\"course\":\"computer_programming\",\"index\":0,\"type\":\"ca\",\"hpBudget\":800,\"total\":800}",
+      "fix": "Stage 1 of Computer Programming should be CA with 800 hp."
+    },
+    {
+      "category": "shooter",
+      "id": "mouse fire spends the 30-shot clip",
+      "weight": 1.5,
+      "score": 1,
+      "detail": "clip 23",
+      "fix": "Hold left click to fire semicolons."
+    },
+    {
+      "category": "shooter",
+      "id": "semicolons damage paper",
+      "weight": 1.5,
+      "score": 1,
+      "detail": "10 hp destroyed",
+      "fix": "Semicolons must hit and damage paper."
+    },
+    {
+      "category": "shooter",
+      "id": "empty clip shows error and 'compiling...' reload",
+      "weight": 1,
+      "score": 1,
+      "detail": "",
+      "fix": "Firing on empty should show error: expected ';' and start the reload."
+    },
+    {
+      "category": "shooter",
+      "id": "coffee throw splashes and makes paper soggy",
+      "weight": 1.5,
+      "score": 1,
+      "detail": "ammo 3→2, soggy=true",
+      "fix": "Q / right click throws coffee with splash and soggy slow."
+    },
+    {
+      "category": "shooter",
+      "id": "dash (all-nighter) bursts the player forward",
+      "weight": 1,
+      "score": 1,
+      "detail": "52 px",
+      "fix": "Space dashes with brief invulnerability."
+    },
+    {
+      "category": "shooter",
+      "id": "professor assist (H) works once per stage",
+      "weight": 1,
+      "score": 1,
+      "detail": "sanity 30→70",
+      "fix": "Prof. Admin's Stress detected should restore 40 Sanity."
+    },
+    {
+      "category": "shooter",
+      "id": "synthesised sound effects fire",
+      "weight": 1,
+      "score": 1,
+      "detail": "11 kinds: ding, shoot, tear, empty, reload, hurt, throw, pickup, splash, hit, dash",
+      "fix": "Add sfx for shoot, hit, tear, splash, pickup, ding, buzz."
+    },
+    {
+      "category": "shooter",
+      "id": "Deadline counts down",
+      "weight": 1,
+      "score": 1,
+      "detail": "42.8→41.7",
+      "fix": "The deadline timer must count down."
+    },
+    {
+      "category": "shooter",
+      "id": "feel: shake, hit flash, shreds, stains, damage numbers",
+      "weight": 1,
+      "score": 1,
+      "detail": "shake, setTintFill, explode, stain, floatText",
+      "fix": "Add screen shake, white hit flash, paper shreds, coffee stains and −5% damage numbers."
+    },
+    {
+      "category": "shooter",
+      "id": "enemy behaviours and both bosses",
+      "weight": 1.5,
+      "score": 1,
+      "detail": "swarm_chase, chase_and_shoot, onDeath, midterm_plane, phase",
+      "fix": "Implement swarm, chase, staple shooting, splitting projects, dive-bombing mid-term and 3-phase final."
+    },
+    {
+      "category": "performance",
+      "id": "60 papers on screen hold the frame rate",
+      "weight": 2,
+      "score": 1,
+      "detail": "idle 36 fps → 37 fps with 68 papers",
+      "fix": "Pool objects, avoid per-frame allocations and Text creation."
+    },
+    {
+      "category": "performance",
+      "id": "4× CPU throttle (mid-range Android) stays playable",
+      "weight": 1.5,
+      "score": 1,
+      "detail": "31 fps throttled (baseline 36)",
+      "fix": "Cut per-frame work: fewer Text updates, cheaper separation, pooled particles."
+    },
+    {
+      "category": "systems",
+      "id": "mercy pass in Prof. Admin's course",
+      "weight": 1,
+      "score": 1,
+      "detail": "{\"computer_programming\":[70]}",
+      "fix": "Failing a Computer Programming stage should record 70 and move on."
+    },
+    {
+      "category": "systems",
+      "id": "Engineering Physics completes start to finish (scripted player)",
+      "weight": 2,
+      "score": 0.5,
+      "detail": "1/2 stages",
+      "fix": "A scripted invulnerable player must be able to clear every stage by shooting."
+    },
+    {
+      "category": "systems",
+      "id": "progress survives a reload",
+      "weight": 1,
+      "score": 1,
+      "detail": "",
+      "fix": "Save to localStorage after every change."
+    },
+    {
+      "category": "systems",
+      "id": "transcript with GPA at the end of the semester",
+      "weight": 1,
+      "score": 1,
+      "detail": "transcript=true gpa=3",
+      "fix": "All three grades → registrar door → transcript with GPA."
+    },
+    {
+      "category": "plan",
+      "id": "language switch works (en / ru / uz)",
+      "weight": 1,
+      "score": 0,
+      "detail": "[[\"ru\",\"en\"],[\"uz\",\"en\"]]",
+      "fix": "Language picker must switch to ru and uz."
+    },
+    {
+      "category": "touch",
+      "id": "canvas fills the 844×390 screen",
+      "weight": 1,
+      "score": 1,
+      "detail": "693×390",
+      "fix": "Use Scale.FIT so the game fills a landscape phone."
+    },
+    {
+      "category": "touch",
+      "id": "tap to start works on touch",
+      "weight": 1,
+      "score": 1,
+      "detail": "",
+      "fix": "The start button must react to a tap."
+    },
+    {
+      "category": "touch",
+      "id": "left-thumb joystick moves the player",
+      "weight": 2,
+      "score": 1,
+      "detail": "55 px",
+      "fix": "Floating joystick on the left half of the screen."
+    },
+    {
+      "category": "touch",
+      "id": "auto-aim + auto-fire on touch",
+      "weight": 2,
+      "score": 1,
+      "detail": "clip 19",
+      "fix": "On touch, fire automatically at the nearest paper."
+    },
+    {
+      "category": "touch",
+      "id": "coffee, dash and help buttons on screen",
+      "weight": 1.5,
+      "score": 1,
+      "detail": "coffee, dash, help",
+      "fix": "Show coffee, dash and help buttons in the right-thumb area."
+    },
+    {
+      "category": "touch",
+      "id": "tapping the coffee button throws coffee",
+      "weight": 1,
+      "score": 1,
+      "detail": "3→2",
+      "fix": "Touch buttons must trigger their actions."
+    },
+    {
+      "category": "touch",
+      "id": "no HUD text overflows the screen",
+      "weight": 1,
+      "score": 1,
+      "detail": "none",
+      "fix": "Keep every HUD text inside 480×270."
+    },
+    {
+      "category": "touch",
+      "id": "\"rotate your phone\" screen in portrait",
+      "weight": 1,
+      "score": 1,
+      "detail": "",
+      "fix": "Show a rotate overlay in portrait."
+    },
+    {
+      "category": "build",
+      "id": "no console errors during probes",
+      "weight": 2,
+      "score": 1,
+      "detail": "none",
+      "fix": "Fix the runtime errors."
+    },
+    {
+      "category": "tests",
+      "id": "Playwright suite passes",
+      "weight": 4,
+      "score": 0.9375,
+      "detail": "15/16 passed · failing: Computer Programming can be completed by a scripted invulnerable player",
+      "fix": "Make every Playwright test pass."
+    }
+  ]
+}

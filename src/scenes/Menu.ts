@@ -6,6 +6,7 @@ import { Input } from '../systems/Input';
 import { courses, getCourse } from '../systems/Data';
 import { COLORS, H, NUM, W, button, setupCamera, txt } from '../ui';
 import { MuteButton } from './HUD';
+import { buildCampus } from '../systems/MapBuilder';
 
 export class MenuScene extends Phaser.Scene {
   constructor() { super('Menu'); }
@@ -62,14 +63,41 @@ export class MenuScene extends Phaser.Scene {
       txt(this, 8, 8, d.achievements.map((a) => '★ ' + t(`achievements.${a}`)).join('\n'), { size: 7, color: COLORS.accent });
     }
     let armed = false;
-    const reset = button(this, 40, H - 30, 64, 12, t('ui.reset'), () => {
+    const reset = button(this, 56, H - 30, 96, 12, t('ui.reset'), () => {
       if (!armed) { armed = true; reset.setLabel(t('ui.resetConfirm')); return; }
       Save.reset(); this.scene.restart();
     }, COLORS.bg);
     reset.label.setFontSize(6);
     new MuteButton(this, W - 14, 14);
-    if (d.credits) txt(this, W - 8, H - 30, `${t('ui.credits')}: ${d.credits}`, { size: 7, color: COLORS.dim, origin: [1, 0.5] });
+    if (d.credits) txt(this, W - 8, H - 44, `${t('ui.credits')}: ${d.credits}`, { size: 7, color: COLORS.dim, origin: [1, 0.5] });
+    // Student name (shown on the transcript). "sudo" gets a reply.
+    const nameBtn = button(this, W - 60, H - 30, 104, 12, t('ui.nameLabel', { name: d.name || t('ui.noName') }), () => {
+      const n = window.prompt(t('ui.enterNamePrompt'), Save.get().name)?.trim().slice(0, 18);
+      if (n === undefined || n === null) return;
+      Save.update((x) => { x.name = n; });
+      nameBtn.setLabel(t('ui.nameLabel', { name: n || t('ui.noName') }));
+      if (n.toLowerCase().startsWith('sudo')) this.toast(t('easterEggs.sudoName'));
+    }, COLORS.bg);
+    nameBtn.label.setFontSize(6);
+    const credBtn = button(this, 56, H - 44, 96, 12, t('ui.creditsTitle'), () => this.showCredits(), COLORS.bg);
+    credBtn.label.setFontSize(6);
+    // Paint the campus while the player reads the menu, so entering it is instant.
+    this.time.delayedCall(400, () => { if (!this.textures.exists('campus_ground')) buildCampus(this).layer.tilemap.destroy(); });
     this.input.keyboard?.once('keydown-ENTER', () => go(!Save.hasProgress()));
     void raw;
+  }
+
+  private toast(s: string): void {
+    const tt = txt(this, W / 2, 140, s, { size: 9, bold: true, color: COLORS.accent, origin: [0.5, 0.5], bg: COLORS.bg }).setPadding(4, 2, 4, 2).setDepth(50);
+    this.tweens.add({ targets: tt, alpha: 0, delay: 2200, duration: 400, onComplete: () => tt.destroy() });
+  }
+
+  private showCredits(): void {
+    const items: Phaser.GameObjects.GameObject[] = [];
+    items.push(this.add.rectangle(0, 0, W, H, 0x181425, 0.92).setOrigin(0, 0).setInteractive().setDepth(100));
+    items.push(txt(this, W / 2, 50, t('ui.creditsTitle'), { size: 14, bold: true, color: COLORS.accent, origin: [0.5, 0.5] }).setDepth(101));
+    items.push(txt(this, W / 2, 120, t('ui.creditsBody'), { size: 8, align: 'center', origin: [0.5, 0.5], wrap: 420 }).setDepth(101));
+    const b = button(this, W / 2, 210, 100, 16, t('ui.back'), () => { items.forEach((o) => o.destroy()); b.destroy(); });
+    b.bg.setDepth(102); b.label.setDepth(103);
   }
 }

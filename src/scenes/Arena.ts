@@ -729,7 +729,8 @@ export class ArenaScene extends Phaser.Scene {
       const ox = s.img.x, oy = s.img.y;
       const x = ox + s.vx * dt, y = oy + s.vy * dt;
       s.img.setPosition(x, y);
-      if (s.life <= 0 || this.outside(x, y) || this.inDesk(x, y)) { s.active = false; s.img.setVisible(false); continue; }
+      // Bosses tower over the desks: in boss stages semicolons fly over them (desks still shield the player).
+      if (s.life <= 0 || this.outside(x, y) || (!this.boss && this.inDesk(x, y))) { s.active = false; s.img.setVisible(false); continue; }
       // Swept test along this frame's path, so papers right on top of the player still get hit.
       const sx = x - ox, sy = y - oy, len2 = sx * sx + sy * sy || 1;
       const segDist = (cx: number, cy: number) => {

@@ -12,11 +12,14 @@ import { courses } from './Data';
 export type AssetSource = { kind: 'grid'; rows: string[] } | { kind: 'file'; url: string };
 
 const registry = new Map<string, AssetSource>();
+/** Optional audio files that replace synthesised effects (id -> url). Empty in version 1. */
+export const soundFiles = new Map<string, string>();
 
 export const AssetRegistry = {
   register(key: string, src: AssetSource): void { registry.set(key, src); },
   get: (key: string): AssetSource | undefined => registry.get(key),
   keys: (): string[] => [...registry.keys()],
+  registerSound(id: string, url: string): void { soundFiles.set(id, url); },
 
   /** Queue file-backed assets on the loader (call from Preload.preload). */
   queueFiles(scene: Phaser.Scene): void {

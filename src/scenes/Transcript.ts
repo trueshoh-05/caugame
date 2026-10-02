@@ -22,7 +22,7 @@ export class TranscriptScene extends Phaser.Scene {
     this.add.rectangle(0, 0, W, H, NUM(COLORS.bg)).setOrigin(0, 0);
     this.add.rectangle(30, 12, W - 60, H - 52, 0xf4f6fa).setOrigin(0, 0).setStrokeStyle(2, 0x124e89);
     this.add.rectangle(30, 12, W - 60, 18, 0x124e89).setOrigin(0, 0);
-    txt(this, 38, 16, `${t('ui.title')} · ${t('ui.transcript')}`, { size: 8, bold: true, color: '#ffffff' });
+    txt(this, 38, 16, `${t('ui.title')} · ${t('ui.transcript')} · ${d.name || t('ui.noName')}`, { size: 8, bold: true, color: '#ffffff' });
     txt(this, W - 38, 16, t('ui.semesterDone'), { size: 7, color: '#c0cbdc', origin: [1, 0] });
     const cols = [40, 210, 330, 380, 420];
     const head = [t('ui.course'), 'Professor', '%', t('ui.letter'), t('ui.gpa')];

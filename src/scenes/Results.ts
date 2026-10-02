@@ -111,13 +111,15 @@ export class ResultsScene extends Phaser.Scene {
     }
     unlocked = [...new Set(unlocked)];
     unlocked.forEach((a, i) => txt(this, W / 2, 98 + i * 10, '★ ' + t('ui.achievement', { name: t(`achievements.${a}`) }), { size: 8, bold: true, origin: [0.5, 0.5], color: COLORS.accent }));
-    this.events.on('update', () => {
-      if (!Input.consume('interact')) return;
-      if (this.courseDone) backToCampus(this);
-      else if (r.retake) this.scene.start('Arena', { courseId: r.courseId, stageIndex: r.stageIndex });
-      else this.scene.start('Arena', { courseId: r.courseId, stageIndex: r.stageIndex + 1 });
-    });
     void courses;
+  }
+
+  update(): void {
+    if (!Input.consume('interact')) return;
+    const r = this.r;
+    if (this.courseDone) backToCampus(this);
+    else if (r.retake) this.scene.start('Arena', { courseId: r.courseId, stageIndex: r.stageIndex });
+    else this.scene.start('Arena', { courseId: r.courseId, stageIndex: r.stageIndex + 1 });
   }
 
   private shop(y: number): void {

@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
 import { AssetRegistry } from '../systems/AssetRegistry';
-import { buildCampus } from '../systems/MapBuilder';
 import { raw, pick, t } from '../systems/Language';
 import { COLORS, H, W, setupCamera, txt } from '../ui';
 
@@ -15,10 +14,6 @@ export class PreloadScene extends Phaser.Scene {
     if (import.meta.env.DEV) this.load.image('plan_overlay', 'reference/campus_plan_rotated.png');
   }
   create(): void {
-    // Paint the campus once, after the tip has been on screen for a frame.
-    this.time.delayedCall(30, () => {
-      buildCampus(this);
-      this.time.delayedCall(600, () => this.scene.start('Menu'));
-    });
+    this.time.delayedCall(250, () => this.scene.start('Menu'));
   }
 }
