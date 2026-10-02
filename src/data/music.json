@@ -1,0 +1,13 @@
+{
+  "_about": "Chiptune patterns for the step sequencer. Notes are semitones relative to A4 (440 Hz); null is a rest. Drums: k = kick, s = snare, h = hat, . = rest. 16 steps per bar, 8th-note grid. The Arena raises playback speed as the Deadline approaches.",
+  "bpm": { "menu": 84, "campus": 90, "stage": 120, "midterm": 104, "final": 160, "results": 110 },
+  "tracks": {
+    "menu":    { "lead": [3, null, 7, null, 10, null, 7, 5, 3, null, null, 0, 2, null, 3, null], "bass": [-21, null, null, null, -18, null, null, null, -16, null, null, null, -14, null, null, null], "drums": "k...h...s...h..." },
+    "campus":  { "lead": [0, null, 3, 5, 7, null, 5, 3, 0, null, -2, null, 0, null, null, null], "bass": [-24, null, -24, null, -19, null, -19, null, -21, null, -21, null, -17, null, -17, null], "drums": "k.h.s.h.k.h.s.hh" },
+    "stage":   { "lead": [12, 10, 7, 10, 12, null, 15, null, 12, 10, 7, 5, 7, null, null, null], "bass": [-24, -12, -24, -12, -19, -7, -19, -7, -21, -9, -21, -9, -17, -5, -17, -5], "drums": "k.hsk.hsk.hsk.hs" },
+    "midterm": { "lead": [0, null, null, 1, null, null, 0, null, null, null, -1, null, 0, null, null, null], "bass": [-24, null, null, null, null, null, null, null, -23, null, null, null, null, null, null, null], "drums": "h.h.h.h.h.h.h.h." },
+    "final":   { "lead": [12, 15, 19, 15, 12, 15, 19, 22, 20, 19, 15, 12, 14, 15, 17, 19], "bass": [-24, -24, -12, -24, -22, -22, -10, -22, -20, -20, -8, -20, -19, -19, -7, -17], "drums": "kshskshskshsksss" },
+    "results": { "lead": [0, 4, 7, 12, null, 7, 12, null, 16, null, null, null, null, null, null, null], "bass": [-24, null, -17, null, -12, null, null, null, -20, null, null, null, null, null, null, null], "drums": "k...s...k.k.s..." },
+    "retake":  { "lead": [7, null, 5, null, 3, null, 2, null, 0, null, null, null, null, null, null, null], "bass": [-17, null, null, null, -19, null, null, null, -24, null, null, null, null, null, null, null], "drums": "k.......s......." }
+  }
+}

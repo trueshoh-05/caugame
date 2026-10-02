@@ -1,0 +1,81 @@
+{
+  "_about": "Professors are helpers: they give the quest, give tips, and can be called once per stage for an assist. They can never be damaged. displayName is what the game shows; real names must never appear anywhere in the game, the code, or the repository's public text.",
+  "professors": [
+    {
+      "id": "prof_metroman",
+      "displayName": "Metroman",
+      "course": "engineering_physics",
+      "building": "Avicenna Hall",
+      "language": "en",
+      "tic": {
+        "phrase": "and whatnot",
+        "chance": 0.5,
+        "maxPerBox": 1
+      },
+      "voiceBlipPitch": 0.7,
+      "personalityRule": "none",
+      "assist": {
+        "id": "time_dilation",
+        "name": "Time dilation",
+        "effect": "Freezes the Deadline wall for 8 seconds",
+        "seconds": 8
+      },
+      "signatureItem": "laser pointer",
+      "spriteNote": "Original character design. Do NOT base the sprite on the film character of the same name.",
+      "achievement": {
+        "id": "etc_and_whatnot",
+        "name": "Etc. and Whatnot",
+        "condition": "Hear the tic 50 times"
+      }
+    },
+    {
+      "id": "prof_admin",
+      "displayName": "Prof. Admin Manzur",
+      "course": "computer_programming",
+      "building": "Avicenna Hall",
+      "office": "264",
+      "language": "en",
+      "tic": null,
+      "voiceBlipPitch": 1.0,
+      "personalityRule": "mercy_pass",
+      "personalityRuleDetail": "If the player fails any stage of his course, there is no retake: he passes them with a fixed score of 70 (a C) and the game moves on.",
+      "assist": {
+        "id": "stress_detected",
+        "name": "Stress detected",
+        "effect": "Restores 40 Sanity. Reference: his research is on computer models of emotion and stress detection.",
+        "heals": 40
+      },
+      "signatureItem": "mug",
+      "achievement": {
+        "id": "curved",
+        "name": "Curved",
+        "condition": "Pass his whole course without winning a single stage"
+      }
+    },
+    {
+      "id": "prof_bezout",
+      "displayName": "Prof. Bezout Argminov",
+      "course": "calculus_for_engineers",
+      "building": "Avicenna Hall",
+      "office": "445",
+      "language": "en",
+      "secondLanguage": "uz",
+      "speechStyle": "Few words. Speech bubbles are often a formula written on a small whiteboard instead of a sentence. Warm asides in Uzbek. Never written with misspellings or imitated pronunciation.",
+      "tic": null,
+      "voiceBlipPitch": 1.2,
+      "personalityRule": "none",
+      "assist": {
+        "id": "isometry",
+        "name": "Isometry",
+        "effect": "For 5 seconds every paper keeps its current distance from the player: none can come closer. Reference: his research is on isometries of Banach spaces.",
+        "seconds": 5
+      },
+      "signatureItem": "whiteboard marker",
+      "achievement": {
+        "id": "qed",
+        "name": "Q.E.D.",
+        "condition": "Finish his final with full Sanity"
+      }
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "_about": "One entry per course. The game builds one stage per grade component, in the order listed. 'weight' is the real percentage from the CAU course page and decides how big the fight is (see balance in enemies.json). 'confirmed: false' means the weights are a placeholder to be replaced.",
+  "semesterOrder": ["computer_programming", "calculus_for_engineers", "engineering_physics"],
+  "courses": [
+    {
+      "id": "computer_programming",
+      "name": "Computer Programming",
+      "professor": "prof_admin",
+      "arena": "computer_lab",
+      "skin": "code",
+      "confirmed": true,
+      "components": [
+        { "type": "ca",       "weight": 20 },
+        { "type": "midterm",  "weight": 10 },
+        { "type": "projects", "weight": 20 },
+        { "type": "final",    "weight": 50 }
+      ],
+      "portalPage": {
+        "description": "No data",
+        "objectives": "No data",
+        "learningOutcomes": "No data",
+        "coreReading": "No data",
+        "additionalReading": "No data",
+        "guidedIndependentStudy": "No data"
+      }
+    },
+    {
+      "id": "calculus_for_engineers",
+      "name": "Calculus for Engineers",
+      "professor": "prof_bezout",
+      "arena": "lecture_hall",
+      "skin": "maths",
+      "confirmed": false,
+      "components": [
+        { "type": "ca",      "weight": 20 },
+        { "type": "midterm", "weight": 30 },
+        { "type": "final",   "weight": 50 }
+      ],
+      "portalPage": {
+        "description": "No data",
+        "objectives": "No data",
+        "learningOutcomes": "No data",
+        "coreReading": "No data",
+        "additionalReading": "No data",
+        "guidedIndependentStudy": "No data"
+      }
+    },
+    {
+      "id": "engineering_physics",
+      "name": "Engineering Physics",
+      "professor": "prof_metroman",
+      "arena": "physics_lab",
+      "skin": "physics",
+      "confirmed": true,
+      "components": [
+        { "type": "midterm", "weight": 40 },
+        { "type": "final",   "weight": 60 }
+      ],
+      "portalPage": {
+        "description": "A calculus-based introduction to classical mechanics, electromagnetism, thermodynamics and statistical physics. Students translate physical laws into simulations.",
+        "objectives": "Formulate, simulate and analyse physical systems. Connect semiconductors to diodes, MOSFETs and CMOS logic gates.",
+        "learningOutcomes": "Design, implement, debug and validate numerical simulations.",
+        "coreReading": "The Feynman Lectures on Physics; OpenStax University Physics; Python Programming and Numerical Methods",
+        "additionalReading": "Think DSP; Digital Design and Computer Architecture: RISC-V Edition",
+        "guidedIndependentStudy": "70 hours"
+      },
+      "shieldPickup": "feynman_lectures"
+    }
+  ],
+  "gradeScale": {
+    "_note": "Placeholder scale. Replace with CAU's real percent -> letter -> GPA table.",
+    "confirmed": false,
+    "bands": [
+      { "min": 90, "letter": "A", "points": 4.0 },
+      { "min": 80, "letter": "B", "points": 3.0 },
+      { "min": 70, "letter": "C", "points": 2.0 },
+      { "min": 60, "letter": "D", "points": 1.0 },
+      { "min": 0,  "letter": "F", "points": 0.0 }
+    ]
+  }
+}

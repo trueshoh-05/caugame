@@ -1,0 +1,271 @@
+{
+  "_about": "Starting balance. Speeds are pixels per second at the internal 480x270 resolution. Tune after playtesting; keep every number here, not in code.",
+  "player": {
+    "speed": 90,
+    "sanity": 100,
+    "dash": {
+      "distance": 48,
+      "cooldown": 1.5,
+      "invulnerable": 0.25
+    },
+    "hitInvulnerable": 0.6,
+    "campusSpeed": 72,
+    "_campusSpeed": "Walking speed on campus (no dash). South gate to the north-west building is ~108 tiles, so ~24 s."
+  },
+  "ammo": {
+    "semicolon": {
+      "displayName": "C++'s Semicolon",
+      "damage": 10,
+      "shotsPerSecond": 6,
+      "clip": 30,
+      "reloadSeconds": 1.0,
+      "reloadText": "compiling...",
+      "emptyText": "error: expected ';'",
+      "projectileSpeed": 260,
+      "unlimited": true
+    },
+    "maccoffee": {
+      "displayName": "MacCoffee 3-in-1",
+      "damage": 40,
+      "splashRadius": 28,
+      "soggy": {
+        "seconds": 3,
+        "speedMultiplier": 0.5
+      },
+      "startCount": 3,
+      "maxCarry": 6
+    },
+    "nescafe": {
+      "displayName": "Nescafe",
+      "damage": 80,
+      "splashRadius": 44,
+      "soggy": {
+        "seconds": 4,
+        "speedMultiplier": 0.4
+      },
+      "startCount": 0,
+      "maxCarry": 3
+    }
+  },
+  "pickups": {
+    "canteen_food": {
+      "heals": 35
+    },
+    "deadline_extension": {
+      "freezeSeconds": 10
+    },
+    "feynman_lectures": {
+      "blocksHits": 1
+    }
+  },
+  "enemies": {
+    "quiz": {
+      "hp": 10,
+      "speed": 70,
+      "touchDamage": 5,
+      "behaviour": "swarm_chase"
+    },
+    "homework": {
+      "hp": 30,
+      "speed": 45,
+      "touchDamage": 10,
+      "behaviour": "chase"
+    },
+    "lab_report": {
+      "hp": 80,
+      "speed": 25,
+      "touchDamage": 10,
+      "behaviour": "chase_and_shoot",
+      "shot": {
+        "name": "staple",
+        "damage": 6,
+        "speed": 120,
+        "everySeconds": 2.0
+      }
+    },
+    "loose_page": {
+      "hp": 15,
+      "speed": 60,
+      "touchDamage": 5,
+      "behaviour": "chase"
+    },
+    "project": {
+      "hp": 150,
+      "speed": 30,
+      "touchDamage": 15,
+      "behaviour": "chase",
+      "onDeath": {
+        "spawn": "loose_page",
+        "count": 4
+      }
+    },
+    "group_project": {
+      "hp": 600,
+      "speed": 28,
+      "touchDamage": 15,
+      "behaviour": "chase",
+      "onDeath": {
+        "spawn": "loose_page",
+        "count": 8
+      },
+      "idleTeammates": 3
+    }
+  },
+  "bosses": {
+    "midterm_paper": {
+      "behaviour": "Folds into a paper plane and dive-bombs the player's position (1 s warning shadow), then unfolds and fires a ring of 8 A/B/C/D bubbles. Repeats.",
+      "touchDamage": 15,
+      "bubble": {
+        "damage": 8,
+        "speed": 90
+      },
+      "hpFromWeight": true,
+      "timing": {
+        "idle": 1.4,
+        "warn": 1.0,
+        "dive": 0.45,
+        "ringBubbles": 8
+      }
+    },
+    "final_exam": {
+      "behaviour": "Giant exam booklet. Phase 1 (100-60% hp): opens and fires slow spirals of red-pen marks. Phase 2 (60-30%): also summons 'additional answer sheets' (loose_page x4 every 8 s). Phase 3 (below 30%): spirals speed up 40% and it drifts toward the player.",
+      "touchDamage": 20,
+      "redPenMark": {
+        "damage": 8,
+        "speed": 80
+      },
+      "hpFromWeight": true,
+      "timing": {
+        "spiralEvery": 0.14,
+        "spiralStep": 0.42,
+        "arms": 2,
+        "summonEvery": 8,
+        "summonCount": 4,
+        "phase2": 0.6,
+        "phase3": 0.3,
+        "phase3SpeedUp": 1.4,
+        "driftSpeed": 14
+      }
+    }
+  },
+  "stageSizing": {
+    "_how": "Each course has a total enemy-health budget. A stage gets budget x weight / 100. Boss stages put the whole share into the boss. CA and Projects stages spend it on waves.",
+    "courseHpBudget": 4000,
+    "deadlineSeconds": {
+      "base": 20,
+      "perWeightPoint": 1.5
+    },
+    "waves": {
+      "ca": {
+        "mix": {
+          "quiz": 0.4,
+          "homework": 0.4,
+          "lab_report": 0.2
+        },
+        "waveCount": 3
+      },
+      "projects": {
+        "mix": {
+          "project": 0.6,
+          "homework": 0.2,
+          "group_project": 0.2
+        },
+        "waveCount": 2
+      }
+    }
+  },
+  "scoring": {
+    "_how": "Stage score out of 100. Course percent = sum of stage score x weight / 100.",
+    "cleared": 70,
+    "sanityBonusMax": 20,
+    "onTimeBonus": 10,
+    "failed": "40 x fraction of enemy health destroyed; the stage must be retaken unless the professor's rule is mercy_pass",
+    "mercyPassScore": 70,
+    "creditsPerCoursePercent": 1
+  },
+  "upgrades": [
+    {
+      "id": "ssd",
+      "name": "SSD",
+      "effect": "Reload time -40%",
+      "cost": 60,
+      "modifier": {
+        "stat": "reloadSeconds",
+        "multiply": 0.6
+      }
+    },
+    {
+      "id": "more_ram",
+      "name": "More RAM",
+      "effect": "Clip 30 -> 45",
+      "cost": 60,
+      "modifier": {
+        "stat": "clip",
+        "set": 45
+      }
+    },
+    {
+      "id": "bigger_mug",
+      "name": "Bigger mug",
+      "effect": "Splash radius +30%",
+      "cost": 80,
+      "modifier": {
+        "stat": "splashRadius",
+        "multiply": 1.3
+      }
+    },
+    {
+      "id": "dark_mode",
+      "name": "Dark Mode",
+      "effect": "Cosmetic only",
+      "cost": 10,
+      "modifier": {
+        "stat": "cosmetic"
+      }
+    }
+  ],
+  "hazards": {
+    "deadline_wall": {
+      "touchDamagePerSecond": 25,
+      "label": "23:59"
+    },
+    "portal_down": {
+      "exitLockedSeconds": 5,
+      "label": "503"
+    },
+    "wifi_dead": {
+      "disables": [
+        "minimap",
+        "assist"
+      ]
+    },
+    "eight_am": {
+      "speedMultiplier": 0.6,
+      "until": "first coffee picked up"
+    },
+    "attendance_sheet": {
+      "secondsOnScreen": 12,
+      "penaltyIfMissed": 5
+    }
+  },
+  "arena": {
+    "_about": "Pacing inside arenas.",
+    "wavePauseSeconds": 1.2,
+    "spawnStaggerSeconds": 0.25,
+    "barkEverySeconds": [
+      14,
+      22
+    ],
+    "attendanceChance": 0.35,
+    "portalDownBelowSeconds": 3,
+    "coffeeThrowRange": 140,
+    "coffeeFlightSeconds": 0.45,
+    "maxStains": 30,
+    "dropChance": 0.05,
+    "wallStartsAt": 0.25,
+    "wallReachAtDeadline": 0.35,
+    "wallMaxReach": 0.55,
+    "wallLateSpeed": 6,
+    "autoAimRange": 260
+  }
+}
