@@ -8,7 +8,9 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --port 4173",
     "test": "playwright test",
-    "score": "node scorer/score.mjs"
+    "score": "node scorer/score.mjs",
+    "build:core": "bash cpp/build-wasm.sh",
+    "test:core": "cmake -S cpp -B cpp/build -DCMAKE_BUILD_TYPE=Release && cmake --build cpp/build && ./cpp/build/cau_tests"
   },
   "dependencies": {
     "phaser": "^3.90.0"

@@ -40,7 +40,12 @@ npm test          # Playwright tests (Chromium; saves screenshots to docs/screen
 npm run score     # run the scorer (see below)
 ```
 
-Stack: Phaser 3, TypeScript (strict), Vite. No backend, no asset files: sprites are pixel grids in
+**The game core is C++.** The rules and the arena fight live in [`cpp/`](cpp/README.md) (C++17),
+compiled to WebAssembly; Phaser draws what the C++ simulation reports. `npm run test:core` runs
+the native C++ tests, `npm run build:core` rebuilds the WebAssembly (needs Emscripten).
+Add `?core=ts` to the URL to play the original TypeScript version of the arena.
+
+Stack: C++17 core (WebAssembly), Phaser 3, TypeScript (strict), Vite. No backend, no asset files: sprites are pixel grids in
 `src/art/`, sound is synthesised in `src/systems/Audio.ts`, music patterns live in `src/data/music.json`.
 All content is data: `src/data/campus.json` (map), `courses.json`, `professors.json`, `enemies.json`
 (every balance number), `rooms/*.json` (arenas) and `text/<lang>.json` (English, Russian, Uzbek).

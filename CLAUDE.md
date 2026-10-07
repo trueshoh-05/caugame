@@ -8,7 +8,9 @@ A free browser game for computer science students at Central Asian University (C
 3. `reference/` — `campus_plan.png` (official 2D plan), `campus_plan_rotated.png` (the same plan turned and cropped to match the tile grid exactly, 8 px per tile), `campus_3d_marked.jpg` (3D render; CAU is inside the red line), `layout_preview.png` and `plan_vs_map.png` (renderings of `campus.json`).
 
 ## Stack
-- Phaser 3 (latest 3.x), TypeScript (strict), Vite. No backend. No UI framework.
+- **Game core in C++17** (`cpp/`): rules, stages, grades, campus maths and the arena fight, compiled to WebAssembly with Emscripten (`npm run build:core`; the output in `src/core/generated/` is committed). Native tests: `npm run test:core`. New game logic goes in C++; see `cpp/README.md`.
+- Phaser 3 (latest 3.x), TypeScript (strict), Vite as the shell: rendering, audio, input, menus, campus walking, saving. No backend. No UI framework.
+- The original TypeScript arena (`src/scenes/ArenaTs.ts`) is kept as a fallback (`?core=ts`) until it is no longer needed.
 - Arcade physics. Internal resolution 480×270, `pixelArt: true`, `Phaser.Scale.FIT` with integer zoom where possible.
 - `vite.config.ts`: `base: './'` so the build works under a GitHub Pages sub-path.
 - Tests: Playwright (Chromium is pre-installed in cloud sessions; do not run `playwright install`).

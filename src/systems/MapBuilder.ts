@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { abgr } from '../art/palette';
 import { campus, type Building } from './Data';
+import { Core } from '../core/Core';
 
 /**
  * Turns campus.json into: a ground texture, an "above the player" texture (tree canopies,
@@ -23,6 +24,7 @@ export function isWalkableChar(c: string): boolean { return !!campus.legend[c]?.
 
 /** Building id for each tile (-1 = none), found by flood fill from each building's seed. */
 export function buildingIndex(): Int16Array {
+  if (Core.core) return Int16Array.from(Core.core.campusBuildings());  // C++ core (cpp/src/campus.cpp)
   const idx = new Int16Array(W * H).fill(-1);
   campus.buildings.forEach((b, bi) => {
     const stack: [number, number][] = [[b.seed[0], b.seed[1]]];
@@ -38,6 +40,10 @@ export function buildingIndex(): Int16Array {
 }
 
 export function blockedGrid(): boolean[][] {
+  if (Core.core) {
+    const b = Core.core.campusBlocked();
+    return Array.from({ length: H }, (_, y) => Array.from({ length: W }, (_, x) => b[y * W + x] === 1));
+  }
   const g: boolean[][] = [];
   for (let y = 0; y < H; y++) { g.push([]); for (let x = 0; x < W; x++) g[y].push(!isWalkableChar(charAt(x, y))); }
   return g;
@@ -248,6 +254,7 @@ export function buildCampus(scene: Phaser.Scene, keyPrefix = 'campus'): BuiltMap
 
 /** Breadth-first search over walkable tiles. Returns distance (in tiles) to every tile, -1 if unreachable. */
 export function bfs(from: [number, number]): Int32Array {
+  if (Core.core) return Core.core.campusBfs(from[0], from[1]);
   const dist = new Int32Array(W * H).fill(-1);
   const q: number[] = [from[1] * W + from[0]];
   dist[q[0]] = 0;

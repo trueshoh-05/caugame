@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 3.16)
+project(cau_core CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+# The game core: rules, campus map and the arena simulation. No graphics, no platform code.
+add_library(cau_core STATIC src/json.cpp src/data.cpp src/rules.cpp src/campus.cpp src/arena.cpp)
+target_include_directories(cau_core PUBLIC src)
+if(MSVC)
+  target_compile_options(cau_core PRIVATE /W4)
+else()
+  target_compile_options(cau_core PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+
+if(NOT EMSCRIPTEN)
+  enable_testing()
+  add_executable(cau_tests tests/tests.cpp)
+  target_link_libraries(cau_tests PRIVATE cau_core)
+  if(NOT MSVC)
+    target_compile_options(cau_tests PRIVATE -Wno-format-zero-length)
+  endif()
+  target_compile_definitions(cau_tests PRIVATE CAU_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/../src/data")
+  add_test(NAME cau_tests COMMAND cau_tests)
+endif()

@@ -12,6 +12,7 @@ audio or font files.
 | Colour palette | [Endesga 32](https://lospec.com/palette-list/endesga-32) by Endesga | Free to use (Lospec palette) |
 | Game engine | [Phaser 3](https://phaser.io) | MIT |
 | Build tool | [Vite](https://vitejs.dev) | MIT |
+| C++ to WebAssembly compiler (build-time only) | [Emscripten](https://emscripten.org) | MIT / University of Illinois NCSA |
 | Sprites, tiles, paper enemies, professors | Original pixel grids in `src/art/` | Part of this project |
 | Sound effects and music | Synthesised in code | Part of this project |
 | Campus layout | Traced from the official CAU 2D campus plan (`reference/`) | Used for a student project |

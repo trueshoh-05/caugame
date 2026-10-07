@@ -8,12 +8,15 @@ import { PreloadScene } from './scenes/Preload';
 import { MenuScene } from './scenes/Menu';
 import { CampusScene } from './scenes/Campus';
 import { ArenaScene } from './scenes/Arena';
+import { ArenaTsScene } from './scenes/ArenaTs';
+import { Core, initCore } from './core/Core';
 import { DialogScene } from './scenes/Dialog';
 import { HUDScene } from './scenes/HUD';
 import { QuestCardScene } from './scenes/QuestCard';
 import { ResultsScene } from './scenes/Results';
 import { TranscriptScene } from './scenes/Transcript';
 
+function start(): void {
 const game = new Phaser.Game({
   type: Phaser.AUTO,
   parent: 'game',
@@ -26,7 +29,8 @@ const game = new Phaser.Game({
   physics: { default: 'arcade', arcade: { debug: false } },
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
   fps: { target: 60 },
-  scene: [BootScene, PreloadScene, MenuScene, CampusScene, ArenaScene, HUDScene, DialogScene, QuestCardScene, ResultsScene, TranscriptScene],
+  // The arena fight runs in the C++ core when it loaded; otherwise the TypeScript fallback.
+  scene: [BootScene, PreloadScene, MenuScene, CampusScene, Core.active ? ArenaScene : ArenaTsScene, HUDScene, DialogScene, QuestCardScene, ResultsScene, TranscriptScene],
 });
 
 game.events.once(Phaser.Core.Events.READY, () => {
@@ -34,3 +38,6 @@ game.events.once(Phaser.Core.Events.READY, () => {
   Input.onGesture(() => Audio.unlock());
   installDebug(game);
 });
+}
+
+void initCore().then(start);

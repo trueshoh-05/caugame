@@ -3,11 +3,12 @@ import { Save } from './systems/Save';
 import { Input } from './systems/Input';
 import { Audio } from './systems/Audio';
 import { HudState } from './scenes/HUD';
-import { buildStage, stageTotalHp } from './systems/Stages';
+import { buildStage, buildStageTs, stageTotalHp } from './systems/Stages';
 import { bfs, blockedGrid } from './systems/MapBuilder';
 import { balance, campus, courses } from './systems/Data';
 import { getLang, setLang } from './systems/Language';
 import { professorLines } from './systems/Dialog';
+import { Core } from './core/Core';
 
 /** Shared debug flags. Exposed as window.__game in dev builds (or with ?debug in the URL) for tests. */
 export const Debug = {
@@ -31,6 +32,7 @@ export function installDebug(game: Phaser.Game): void {
     game, Debug, Save, Input, Audio, HudState, campus, courses, balance,
     scenes: active,
     professorLines,
+    Core,
     state() {
       const a = arena(), c = campusScene();
       const pl = (a ?? c)?.player as Phaser.GameObjects.Sprite | undefined;
@@ -45,6 +47,7 @@ export function installDebug(game: Phaser.Game): void {
         boss: a && a.boss ? { hp: a.boss.hp, max: a.boss.maxHp, phase: a.boss.phase, state: a.boss.state } : null,
         stage: a ? { course: a.course.id, index: a.stage.index, type: a.stage.type, hpBudget: a.stage.hpBudget, total: a.total } : null,
         lang: getLang(),
+        core: Core.active ? 'cpp' : 'ts',
         fps: game.loop.actualFps,
         hud: { ...HudState },
         save: Save.get(),
@@ -54,17 +57,32 @@ export function installDebug(game: Phaser.Game): void {
     setAutoAim(v: boolean) { Debug.autoAim = v; },
     setAutoSubmit(v: boolean) { Debug.autoSubmit = v; },
     setLang(code: string) { setLang(code); Save.update((s) => { s.lang = code; }); },
-    teleport(x: number, y: number) { const s = (arena() ?? campusScene()); if (s) { s.player.setPosition(x, y); s.player.body.reset(x, y); } },
+    teleport(x: number, y: number) {
+      const s = (arena() ?? campusScene());
+      if (!s) return;
+      if (typeof s.teleport === 'function') s.teleport(x, y);  // C++ arena
+      else { s.player.setPosition(x, y); s.player.body.reset(x, y); }
+    },
     teleportTile(tx: number, ty: number) { api.teleport(tx * 16 + 8, ty * 16 + 14); },
     spawn(kind: string, n: number) { arena()?.debugSpawn(kind, n); },
     killAll() { arena()?.debugKillAll(); },
     submit() { arena()?.submit(); },
-    damagePlayer(n: number) { const a = arena(); if (a) { const inv = Debug.invulnerable; Debug.invulnerable = false; a.player.invuln = 0; a.damagePlayer(n); Debug.invulnerable = inv; } },
+    damagePlayer(n: number) {
+      const a = arena();
+      if (!a) return;
+      if (a.sim) { a.damagePlayer(n); return; }  // C++ arena handles invulnerability itself
+      const inv = Debug.invulnerable; Debug.invulnerable = false; a.player.invuln = 0; a.damagePlayer(n); Debug.invulnerable = inv;
+    },
     enterArena(courseId: string) { campusScene()?.enterArena(courseId); },
     acceptCourse(courseId: string) { Save.update((s) => { if (!s.accepted.includes(courseId)) s.accepted.push(courseId); }); campusScene()?.refreshObjective(); },
     stagePlan(courseId: string) {
       const c = courses.courses.find((x) => x.id === courseId)!;
       return c.components.map((_, i) => { const s = buildStage(courseId, i); return { type: s.type, weight: s.weight, hpBudget: s.hpBudget, total: stageTotalHp(s), deadline: s.deadline, waves: s.waves.map((w) => w.map((x) => x.type)), boss: s.boss }; });
+    },
+    /** The TypeScript fallback's plan, to compare with the C++ core's. */
+    stagePlanTs(courseId: string) {
+      const c = courses.courses.find((x) => x.id === courseId)!;
+      return c.components.map((_, i) => { const s = buildStageTs(courseId, i); return { type: s.type, weight: s.weight, hpBudget: s.hpBudget, total: stageTotalHp(s), deadline: s.deadline, waves: s.waves.map((w) => w.map((x) => x.type)), boss: s.boss }; });
     },
     reachability() {
       const d = bfs(campus.playerStart);

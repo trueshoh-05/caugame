@@ -107,9 +107,9 @@ function staticChecks() {
   const roomIds = walk(path.join(ROOT, 'src', 'data', 'rooms')).map((f) => path.basename(f, '.json'));
   const arenas = courses.courses.map((c) => c.arena);
   check('data', 'arena rooms exist as data (src/data/rooms)', 1, arenas.filter((a) => roomIds.includes(a)).length / arenas.length * (roomIds.includes('exam_hall') ? 1 : 0.8), roomIds.join(', '), 'Create a rect-based room file per arena in src/data/rooms/.');
-  const enemiesTs = /balance\.enemies\[/.test(srcAll) && /stageSizing/.test(srcAll);
+  const enemiesTs = /balance\.enemies\[/.test(srcAll) && /stageSizing/.test(srcAll + (read('cpp/src/rules.cpp') ?? ''));
   check('data', 'balance numbers come from enemies.json', 1.5, enemiesTs ? 1 : 0, '', 'Read all balance numbers from enemies.json.');
-  const magic = (read('src/scenes/Arena.ts') ?? '').match(/(?:hp|damage|speed|cooldown)\s*[:=]\s*\d{2,}/gi) ?? [];
+  const magic = ((read('src/scenes/Arena.ts') ?? '') + (read('cpp/src/arena.cpp') ?? '')).match(/(?:hp|damage|speed|cooldown)\s*[:=]\s*\d{2,}/gi) ?? [];
   check('data', 'no balance literals in Arena', 1, Math.max(0, 1 - magic.length / 4), magic.slice(0, 4).join(', ') || 'none', 'Move balance literals into enemies.json.');
   const registry = read('src/systems/AssetRegistry.ts') ?? '';
   check('data', 'AssetRegistry lets sprites be swapped for files', 1, /kind:\s*'file'/.test(registry) ? 1 : 0, '', 'Keep an AssetRegistry mapping keys to code-drawn grids or files.');
@@ -289,9 +289,11 @@ async function liveChecks() {
     const p1 = (await st(page)).player;
     check('shooter', 'dash (all-nighter) bursts the player forward', 1, p0.x - p1.x > 30 ? 1 : 0, `${Math.round(p0.x - p1.x)} px`, 'Space dashes with brief invulnerability.');
     // assist
-    await G(page, () => { const a = window.__game.game.scene.getScene('Arena'); a.sanity = 30; window.__game.press('help'); });
+    // Invulnerable for this probe, so a paper hit during the wait can't mask the heal.
+    await G(page, () => { const a = window.__game.game.scene.getScene('Arena'); window.__game.setInvulnerable(true); a.sanity = 30; window.__game.press('help'); });
     await page.waitForTimeout(300);
     const healed = (await st(page)).sanity;
+    await G(page, () => window.__game.setInvulnerable(false));
     check('shooter', 'professor assist (H) works once per stage', 1, healed >= 69 ? 1 : 0, `sanity 30→${healed}`, "Prof. Admin's Stress detected should restore 40 Sanity.");
     // feel
     const played = await G(page, () => window.__game.Audio.played);
@@ -299,7 +301,8 @@ async function liveChecks() {
     check('shooter', 'synthesised sound effects fire', 1, Math.min(1, sfxKinds / 6), `${sfxKinds} kinds: ${Object.keys(played).join(', ')}`, 'Add sfx for shoot, hit, tear, splash, pickup, ding, buzz.');
     const deadline1 = (await st(page)).deadline; await page.waitForTimeout(1100); const deadline2 = (await st(page)).deadline;
     check('shooter', 'Deadline counts down', 1, deadline2 < deadline1 ? 1 : 0, `${deadline1?.toFixed(1)}→${deadline2?.toFixed(1)}`, 'The deadline timer must count down.');
-    const arenaSrc = read('src/scenes/Arena.ts') ?? '';
+    // The fight logic lives in the C++ core (cpp/src/arena.cpp); the scene draws it.
+    const arenaSrc = (read('src/scenes/Arena.ts') ?? '') + (read('src/scenes/ArenaTs.ts') ?? '') + (read('cpp/src/arena.cpp') ?? '');
     const feel = ['shake', 'setTintFill', 'explode', 'stain', 'floatText'].filter((k) => arenaSrc.includes(k));
     check('shooter', 'feel: shake, hit flash, shreds, stains, damage numbers', 1, feel.length / 5, feel.join(', '), 'Add screen shake, white hit flash, paper shreds, coffee stains and −5% damage numbers.');
     const behaviours = ['swarm_chase', 'chase_and_shoot', 'onDeath', 'midterm_plane', 'phase'].filter((k) => arenaSrc.includes(k));

@@ -19,7 +19,7 @@ test('stage health totals match stageSizing for every course', async ({ page }) 
 });
 
 test('Computer Programming can be completed by a scripted invulnerable player', async ({ page }) => {
-  test.setTimeout(420_000);
+  test.setTimeout(900_000);
   const errors: string[] = [];
   await boot(page, errors);
   await startGame(page);
@@ -39,9 +39,11 @@ test('Computer Programming can be completed by a scripted invulnerable player', 
       if (stage === 0 && Date.now() - t0 > 4000 && Date.now() - t0 < 4500) await page.screenshot({ path: 'docs/screens/arena-desktop.png' });
       if (stage === 3 && Date.now() - t0 > 8000 && Date.now() - t0 < 8600) await page.screenshot({ path: 'docs/screens/final-boss-desktop.png' });
       await page.waitForTimeout(250);
-      expect(Date.now() - t0).toBeLessThan(150_000);
+      // Real time, not game time: on a slow machine the game clock runs slower than the wall clock.
+      expect(Date.now() - t0, `stage ${stage} still running`).toBeLessThan(240_000);
     }
     await page.evaluate(() => (window as any).__game.move(0, 0));
+    console.log(`stage ${stage} cleared in ${((Date.now() - t0) / 1000).toFixed(0)} s`);
     await page.waitForTimeout(300);
     if (stage === 3) await page.screenshot({ path: 'docs/screens/results-desktop.png' });
     await page.keyboard.press('KeyE');

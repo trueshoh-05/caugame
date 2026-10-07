@@ -1,12 +1,15 @@
 import { getProfessor } from './Data';
 import { raw } from './Language';
 import { Save } from './Save';
+import { Core } from '../core/Core';
 
 export type RawLine = string | { text?: string; formula?: string; lang?: string };
 export interface Line { text: string; formula: boolean; lang?: string; speaker: string; pitch: number; tics: number }
 
 /** Fill {tic}: the phrase appears with the professor's chance, at most maxPerBox times per box. */
-export function insertTic(text: string, profId: string, rng: () => number = Math.random): { text: string; count: number } {
+export function insertTic(text: string, profId: string, rng?: () => number): { text: string; count: number } {
+  if (Core.core && !rng) return Core.core.insertTic(text, profId);  // C++ core (cpp/src/rules.cpp)
+  rng ??= Math.random;
   const p = getProfessor(profId);
   let count = 0;
   const out = text.replace(/\s*\{tic\}/g, () => {

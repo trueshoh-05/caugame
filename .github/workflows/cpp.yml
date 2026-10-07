@@ -1,0 +1,31 @@
+name: C++ core
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  native-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and run the native tests
+        run: |
+          cmake -S cpp -B cpp/build -DCMAKE_BUILD_TYPE=Release
+          cmake --build cpp/build -j
+          ./cpp/build/cau_tests
+
+  wasm-up-to-date:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mymindstorm/setup-emsdk@v14
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Rebuild the WebAssembly core and check the committed build behaves the same
+        run: |
+          node scripts/core-fingerprint.mjs > committed.json
+          bash cpp/build-wasm.sh
+          node scripts/core-fingerprint.mjs > rebuilt.json
+          diff committed.json rebuilt.json || (echo "::error::src/core/generated is stale: run npm run build:core and commit it"; exit 1)

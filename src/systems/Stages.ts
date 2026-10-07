@@ -1,4 +1,5 @@
 import { balance, getCourse } from './Data';
+import { Core } from '../core/Core';
 
 export interface Spawn { type: string; hpOverride?: number }
 export interface Stage {
@@ -48,6 +49,17 @@ export function buildWaves(kind: 'ca' | 'projects', budget: number): Spawn[][] {
 }
 
 export function buildStage(courseId: string, index: number): Stage {
+  if (Core.core) {
+    // C++ core (cpp/src/rules.cpp).
+    const p = Core.core.stage(courseId, index);
+    const waves = p.waves.map((w) => w.map((sp) => (sp.hp === balance.enemies[sp.type].hp ? { type: sp.type } : { type: sp.type, hpOverride: sp.hp })));
+    return { courseId, index, type: p.type, weight: p.weight, hpBudget: p.hpBudget, deadline: p.deadline, waves, boss: p.boss };
+  }
+  return buildStageTs(courseId, index);
+}
+
+/** TypeScript fallback, used when the WebAssembly core is unavailable. */
+export function buildStageTs(courseId: string, index: number): Stage {
   const course = getCourse(courseId);
   const comp = course.components[index];
   const hpBudget = Math.round((SZ.courseHpBudget * comp.weight) / 100);
