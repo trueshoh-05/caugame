@@ -26,3 +26,9 @@ if(NOT EMSCRIPTEN)
   target_compile_definitions(cau_tests PRIVATE CAU_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/../src/data")
   add_test(NAME cau_tests COMMAND cau_tests)
 endif()
+
+# Standalone terminal edition (no browser): cpp/standalone/. Data is embedded at build time.
+if(NOT EMSCRIPTEN)
+  add_executable(cau_terminal standalone/main.cpp)
+  target_link_libraries(cau_terminal PRIVATE cau_core)
+endif()

@@ -44,6 +44,7 @@ npm run score     # run the scorer (see below)
 compiled to WebAssembly; Phaser draws what the C++ simulation reports. `npm run test:core` runs
 the native C++ tests, `npm run build:core` rebuilds the WebAssembly (needs Emscripten).
 Add `?core=ts` to the URL to play the original TypeScript version of the arena.
+There is also a **terminal edition**: one C++ file, no dependencies — see [`cpp/standalone/`](cpp/standalone/README.md).
 
 Stack: C++17 core (WebAssembly), Phaser 3, TypeScript (strict), Vite. No backend, no asset files: sprites are pixel grids in
 `src/art/`, sound is synthesised in `src/systems/Audio.ts`, music patterns live in `src/data/music.json`.

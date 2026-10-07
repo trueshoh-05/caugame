@@ -30,6 +30,11 @@ All numbers and text still come from `src/data/`, shared with the web game; noth
 The scene never decides game rules; it only renders. With `?core=ts` in the URL (or if the
 WebAssembly fails to load) the game runs the original TypeScript arena instead.
 
+## Terminal edition
+
+`standalone/` turns this core into a complete game you can play in a terminal, as one C++ file
+with no dependencies: see [`standalone/README.md`](standalone/README.md).
+
 ## Build and test
 
 Native tests (any C++17 compiler + CMake):

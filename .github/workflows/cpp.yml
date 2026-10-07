@@ -15,6 +15,20 @@ jobs:
           cmake --build cpp/build -j
           ./cpp/build/cau_tests
 
+  terminal-edition:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Regenerate the single-file terminal game and check it is committed
+        run: |
+          python3 cpp/standalone/make_single_file.py
+          git diff --exit-code cpp/standalone || (echo "::error::run python3 cpp/standalone/make_single_file.py and commit"; exit 1)
+      - name: Compile it on its own and let the bot play a semester
+        run: |
+          mkdir /tmp/alone && cp cpp/standalone/cau_semester_survivor.cpp /tmp/alone/
+          cd /tmp/alone && g++ -std=c++17 -O2 -Wall -Wextra -Werror cau_semester_survivor.cpp -o cau
+          ./cau --bot | tail -3 | grep "BOT GPA"
+
   wasm-up-to-date:
     runs-on: ubuntu-latest
     steps:
