@@ -160,7 +160,7 @@ The map is `src/data/campus.json`: a grid of 130 × 144 tiles **traced pixel by 
 
 Also on the map: the guide paths; the dark plaza; the canals; the car park with its tree rows; the west lawn; the football pitch and sports courts; the steps beside the south building; the south and east gates.
 
-**One inference to confirm:** the plan's guide path runs straight through the south link of the main complex, so the map has an archway there. If there is no passage, it becomes a wall and the path goes around.
+**Confirmed (Nov 2026):** there is no passage through the south link of the main complex. The guide path ends at the south-link door, and the way to the courtyard is around the building.
 
 Only one building name is confirmed. Tell me the rest (which is Avicenna Hall, where the canteen and library are, which building each course is really taught in) and they change in one place.
 

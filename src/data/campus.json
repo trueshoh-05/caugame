@@ -16,11 +16,6 @@
    "name": "building",
    "walkable": false
   },
-  "a": {
-   "name": "archway",
-   "walkable": true,
-   "draw": "covered passage through a building at ground level; draw the building's roof above the player"
-  },
   "p": {
    "name": "paving",
    "walkable": true
@@ -145,11 +140,11 @@
   "ppttttt##########ptd####dt###tt###############tttttwppddddd########d=tttttttt=###########=tdppppppppppppppppppppppppppppppppp.....",
   "ppttttt##########pt###########t###############tttttwppddddd########d=tttttttt=###########===============================ppppp.....",
   ".pttttt##########ptd##########p###############tttttwppddddd########d=tttttttt=###########=ppppptpppppptpdpppppppppppppppppppp.....",
-  ".pttttt###########p###########################tttttwppdddpp########d=tptttdt=a###########=pptttttttttttttttppppppppppppppttpp.....",
-  "..ttttt#######################################tttttwppdddpp#################aa###########=ppttttttgttttttttppppp##pppppppptpp.....",
-  "...tttt#######################################tttttwppddddp#################aa###########=pttttttpptttptptpppp####ppppppppttp.....",
-  "....ttd#######################################tttttwppddddd#################aa#########pp=ptttgttpppdppppppp#######pppppppppp.....",
-  ".....td#######################################tttttwppddddd#################aa#########pp=ppttgttdppppppppp#########ppppppppp.....",
+  ".pttttt###########p###########################tttttwppdddpp########d=tptttdt=############=pptttttttttttttttppppppppppppppttpp.....",
+  "..ttttt#######################################tttttwppdddpp##############################=ppttttttgttttttttppppp##pppppppptpp.....",
+  "...tttt#######################################tttttwppddddp##############################=pttttttpptttptptpppp####ppppppppttp.....",
+  "....ttd#######################################tttttwppddddd############################pp=ptttgttpppdppppppp#######pppppppppp.....",
+  ".....td#######################################tttttwppddddd############################pp=ppttgttdppppppppp#########ppppppppp.....",
   "......dp##ppdpp#####################ppppp#####pttttwppddddddppppppppdppppppp==ppppppppppp=ppttttttppppppp############pppppppp.....",
   ".......dppppdppdddpddpdppdddppddddddpppppdddddppdpdwppdppdddpppppppdpdppppppp=dddddddpppp=pptttttdppppp##############pppppppp.....",
   "........ppppdpddddppdddddddddddpddddpppppdddddddddpdpppppdtdtppppttptdtpppppp=dtdptdddttp=pptttttppppp################ppppppp.....",
@@ -233,7 +228,7 @@
     88,
     76
    ],
-   "tiles": 460,
+   "tiles": 469,
    "doors": [
     {
      "at": [
@@ -263,11 +258,11 @@
     },
     {
      "at": [
-      72,
+      77,
       76
      ],
      "front": [
-      72,
+      77,
       77
      ],
      "side": "south",
@@ -687,12 +682,12 @@
  ],
  "notes": [
   "A building is a connected group of '#' and 'a' tiles; 'seed' is one tile inside it, 'bbox' its extent. Do not match buildings by bbox alone: the annex lies inside the main complex's bbox.",
-  "The archway through the south link is inferred from the guide path on the plan, which runs straight through the building there. To be confirmed.",
   "North of row 0 the plan continues with a stadium and planned buildings; they are outside the red line and are not part of the map.",
   "The Architecture and Engineering building is missing from the 3D render (a lawn is shown in its place) but is on the 2D plan and on this map.",
   "Door 'at' is the building-edge tile that becomes the door; 'front' is the walkable tile directly outside it.",
   "Which arena is behind which door, the coffee/food points and the Wi-Fi dead zone are guesses to be confirmed.",
-  "Nov 2026 corrections from a CAU student: the long north wing is Event Hall, a separate building, not connected to the main complex; the red ribbon path was removed. The reference plan in reference/ predates these."
+  "Nov 2026 corrections from a CAU student: the long north wing is Event Hall, a separate building, not connected to the main complex; the red ribbon path was removed. The reference plan in reference/ predates these.",
+  "Nov 2026: the inferred archway through the south link does not exist; it is solid building, and the south-link door is where the guide path meets the facade."
  ],
  "students": [
   {
