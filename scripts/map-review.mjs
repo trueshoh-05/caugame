@@ -28,7 +28,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8"></head><body styl
 <div style="font-size:13px;max-width:560px"><h2 style="margin:0 0 8px">CAU map in the game — what is where</h2>
 <p style="margin:0 0 8px">Grid traced from the official plan (north is up after the 41.8° turn; south gate at the bottom). Tell me the numbers that are wrong and what they really are.</p>
 <table style="border-collapse:collapse" cellpadding="3" border="1">${legend.join('')}</table>
-<p><span style="background:#f2c14e">&nbsp;&nbsp;</span> guide paths &nbsp; <span style="background:#b3303c">&nbsp;&nbsp;</span> red ribbon &nbsp; <span style="background:#2a8fd6">&nbsp;&nbsp;</span> canals &nbsp; <span style="background:#6cc35a">&nbsp;&nbsp;</span> football pitch &nbsp; <span style="background:#d77643">&nbsp;&nbsp;</span> courts &nbsp; <span style="background:#59627a">&nbsp;&nbsp;</span> parking</p></div></body></html>`;
+<p><span style="background:#f2c14e">&nbsp;&nbsp;</span> guide paths &nbsp; <span style="background:#2a8fd6">&nbsp;&nbsp;</span> canals &nbsp; <span style="background:#6cc35a">&nbsp;&nbsp;</span> football pitch &nbsp; <span style="background:#d77643">&nbsp;&nbsp;</span> courts &nbsp; <span style="background:#59627a">&nbsp;&nbsp;</span> parking</p></div></body></html>`;
 fs.writeFileSync('docs/map-review.html', html);
 const b = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
 const p = await b.newPage({ viewport: { width: W * S + 620, height: H * S + 30 } });

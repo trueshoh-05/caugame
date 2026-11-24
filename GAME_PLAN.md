@@ -141,7 +141,7 @@ Personality rules for Metroman and Prof. Bezout are empty for now. Fill them wit
 The map is `src/data/campus.json`: a grid of 130 × 144 tiles **traced pixel by pixel from the official 2D campus plan**, so building footprints, gaps and proportions are the real ones. Nothing is compressed or rearranged. `reference/plan_vs_map.png` shows the plan and the map side by side.
 
 - **What counts as CAU** comes from your red line on the 3D render: the car park, the buildings around the central walkway, the sports ground, up to the two long buildings at the north. The stadium and planned buildings further north are left off.
-- **The main complex is one building.** The two "twin" wings are joined along their south side, and the east wing is joined to the long north wing by a narrow link. Together they wrap around the tree courtyard, which is open only to the north.
+- **The main complex** is the two "twin" wings joined along their south side, wrapped around the tree courtyard, which is open only to the north. The long building to the north is **Event Hall**: a separate building, not connected to the main complex (corrected by a CAU student, Nov 2026).
 - **The Architecture and Engineering building** is on the map, west of the main complex, with its inner courtyard and pools. The 3D render shows a lawn there; the 2D plan has the building.
 - The real campus sits diagonally on the plan. In the game it is turned 41.8° (measured from the building edges) so walls run straight along the grid and the main walkway runs up the screen. This matches the 3D render's viewpoint: highway at the bottom, east road on the right.
 - Crossing the campus from the south gate to the north buildings takes about 25 seconds.
@@ -149,16 +149,16 @@ The map is `src/data/campus.json`: a grid of 130 × 144 tiles **traced pixel by 
 | On the map | Where | Used in the game as |
 |---|---|---|
 | Architecture and Engineering building | West, large, with courtyard | Computer lab — Programming *(guess)* |
-| Main complex, north wing | On the central walkway | Lecture hall — Calculus *(guess)* |
-| Main complex, east and west wings, south link | Around the tree courtyard | Locked for now |
+| Event Hall (long building north of the main complex; separate, not academic) | On the central walkway | Locked for now |
+| Main complex: east and west wings, south link | Around the tree courtyard | Lecture hall — Calculus, east-wing door *(guess)*; other doors locked |
 | East building | Next to the football pitch | Physics lab — Engineering Physics *(guess)* |
 | Zigzag building | South of the pitch | Locked for now |
 | South building (pyramid roof) | By the main entrance | Locked; food point outside |
 | North-west building | North end of the walkway | Exam hall *(guess)* |
 | North-east building | By the east gate | Locked for now |
-| Two small annex buildings | West of the north wing | Scenery |
+| Two small annex buildings | West of Event Hall | Scenery |
 
-Also on the map: the guide paths; the red ribbon path with its loop; the dark plaza; the canals; the car park with its tree rows; the west lawn; the football pitch and sports courts; the steps beside the south building; the south and east gates.
+Also on the map: the guide paths; the dark plaza; the canals; the car park with its tree rows; the west lawn; the football pitch and sports courts; the steps beside the south building; the south and east gates.
 
 **One inference to confirm:** the plan's guide path runs straight through the south link of the main complex, so the map has an archway there. If there is no passage, it becomes a wall and the path goes around.
 

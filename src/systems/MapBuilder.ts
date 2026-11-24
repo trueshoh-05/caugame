@@ -57,7 +57,7 @@ function hash(x: number, y: number, k = 0): number {
 
 // Roof schemes per building: [roof, roof shade, ridge highlight, wall, window]
 const SCHEMES: Record<string, string[]> = {
-  main: ['N', 'n', 'g', 'G', 'b'], ae: ['u', 'q', 'Q', 's', 'b'], nw: ['p', 'K', 'P', 'G', 'B'],
+  main: ['N', 'n', 'g', 'G', 'b'], event_hall: ['P', 'p', 'f', 's', 'b'], ae: ['u', 'q', 'Q', 's', 'b'], nw: ['p', 'K', 'P', 'G', 'B'],
   ne: ['e', 'E', 'L', 'G', 'B'], annex: ['g', 'N', 'G', 'G', 'b'], annex_2: ['g', 'N', 'G', 'G', 'b'],
   east: ['b', 'K', 'B', 'G', 'c'], zigzag: ['U', 'z', 'u', 's', 'b'], south: ['Q', 'q', 'y', 's', 'b'],
 };

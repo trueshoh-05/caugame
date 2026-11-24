@@ -12,6 +12,8 @@ export default defineConfig({
     viewport: { width: 960, height: 540 },
     // The cloud sandbox proxies HTTPS with its own CA; trust it so the webfont request doesn't log an error.
     ignoreHTTPSErrors: true,
+    // Use an already-installed Chromium if the pinned one is missing (set CHROMIUM_PATH).
+    launchOptions: process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {},
   },
   webServer: {
     command: 'npx vite build && npx vite preview --port 4173 --strictPort',

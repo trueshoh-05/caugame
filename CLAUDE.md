@@ -37,13 +37,13 @@ A free browser game for computer science students at Central Asian University (C
 ## Map
 - `campus.json` is a **tile grid traced from the real plan**: `grid` is 144 rows of 130 characters, one character per tile, decoded by `legend` (which also says what is walkable). Do not redraw, simplify or "tidy" the layout; footprints and proportions are true to the plan.
 - `MapBuilder` turns the grid into the tilemap at load. A building is a connected group of `#` and `a` tiles; find each one by flood-filling from its `seed` tile in `buildings` (do not match by `bbox`: the annexes sit inside the main complex's bounding box). Choose wall edges, corners and roofs automatically from neighbouring tiles (autotiling), so the rotated south building and the zigzag facade come out as stepped walls.
-- **The main complex is one building**: north wing, a narrow link, east wing, south link and west wing, wrapped around a tree courtyard that is open only to the north. Draw it with one continuous roof.
+- **The main complex** is the east wing, south link and west wing, wrapped around a tree courtyard that is open only to the north. Draw it with one continuous roof. The long building north of it is **Event Hall**, a separate building (not academic, not connected to the main complex).
 - `a` tiles are an archway through the south link: walkable, with the building's roof drawn above the player.
 - Only `#` and `.` block movement. Trees (`t`) are decoration with the canopy drawn above the player; canals (`w`) are narrow ditches the player steps over; `s` is outdoor steps.
 - `.` is outside the campus: draw a fence or hedge along the boundary and plain street beyond. The camera is clamped to the grid.
 - Each door has `at` (the building-edge tile that becomes the door), `front` (the walkable tile outside it) and `leadsTo`. Doors with `leadsTo: null` are locked ("Room 404: not found" style jokes are welcome).
-- Place `gates`, `npcs`, `pickups`, `props` and `zones` from the file. The red ribbon path (`r`) and guide paths (`=`) get their own paving so players can navigate by them.
-- Debug key **M** overlays `reference/campus_plan_rotated.png` at 50% opacity, scaled so 8 image pixels = 1 tile (dev builds only). It must line up with the map exactly.
+- Place `gates`, `npcs`, `pickups`, `props` and `zones` from the file. Guide paths (`=`) get their own paving so players can navigate by them. (The red ribbon path on the official plan was removed from the map in Nov 2026.)
+- Debug key **M** overlays `reference/campus_plan_rotated.png` at 50% opacity, scaled so 8 image pixels = 1 tile (dev builds only). It must line up with the map, except where students corrected the plan (see the notes in `campus.json`).
 - Arena rooms (`computer_lab`, `lecture_hall`, `physics_lab`, `exam_hall`) are single-screen layouts in `src/data/rooms/`, with desks as cover. Create them; they may use a simple rect-based format.
 - Building names live only in `campus.json`. Only the Architecture and Engineering building's name is confirmed.
 
