@@ -1,5 +1,7 @@
 # CAU: Semester Survivor
 
+*Unofficial student game, not affiliated with Central Asian University.*
+
 A free browser game for computer science students at **Central Asian University (CAU), Tashkent**.
 You are a student. Your assignments have come alive as angry paper. Your weapon is your laptop:
 it fires C++'s Semicolons, and you can throw coffee. Professors hand out the quests and help;

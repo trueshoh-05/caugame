@@ -26,6 +26,7 @@ export class MenuScene extends Phaser.Scene {
     this.add.rectangle(W / 2, 62, 330, 62, NUM(COLORS.bg), 0.85).setStrokeStyle(1, NUM(COLORS.accent));
     txt(this, W / 2, 48, t('ui.title'), { size: 20, bold: true, color: COLORS.accent, origin: [0.5, 0.5] });
     txt(this, W / 2, 74, t('ui.subtitle'), { size: 8, color: COLORS.dim, origin: [0.5, 0.5] });
+    txt(this, W / 2, 86, t('ui.disclaimer'), { size: 6, color: COLORS.dim, origin: [0.5, 0.5] });
     this.add.image(W / 2 - 60, 120, 'player_0').setScale(2);
     this.add.image(W / 2 + 60, 122, `homework_code`).setScale(2);
     const semi = this.add.image(W / 2 - 30, 112, 'semicolon').setScale(2);
