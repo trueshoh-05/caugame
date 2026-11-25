@@ -69,20 +69,32 @@ export class ResultsScene extends Phaser.Scene {
     txt(this, W / 2, 40, head, { size: 18, bold: true, origin: [0.5, 0.5], color: r.cleared ? COLORS.green : r.mercy ? COLORS.accent : COLORS.red });
 
     // Stage breakdown.
+    // Show every part of the stage score so the total visibly adds up.
+    const S = balance.scoring;
     const rows: [string, string][] = [];
     if (r.cleared) {
-      rows.push([t('ui.sanityLeft'), `${r.sanityLeft}`]);
-      rows.push([r.late ? t('ui.late') : t('ui.onTime'), r.late ? t('ui.lateSubmission') : `+${balance.scoring.onTimeBonus}`]);
-      if (r.attendanceMissed) rows.push([t('ui.attendanceMissedShort'), `-${balance.hazards.attendance_sheet.penaltyIfMissed}`]);
+      const onTime = r.late ? 0 : S.onTimeBonus;
+      const attendance = r.attendanceMissed ? balance.hazards.attendance_sheet.penaltyIfMissed : 0;
+      const sanityBonus = r.score - S.cleared - onTime + attendance;
+      rows.push([t('ui.clearedPts'), `${S.cleared}`]);
+      rows.push([t('ui.sanityBonus', { n: r.sanityLeft }), `+${sanityBonus}`]);
+      rows.push([r.late ? t('ui.late') : t('ui.onTime'), `+${onTime}`]);
+      if (attendance) rows.push([t('ui.attendanceMissedShort'), `−${attendance}`]);
     } else {
       rows.push([t('ui.stageFailed'), '']);
-      rows.push([t('ui.destroyed'), `${Math.round(r.destroyedFraction * 100)}%`]);
+      rows.push([t('ui.destroyedPct', { n: Math.round(r.destroyedFraction * 100) }), r.mercy || r.retake ? '' : `+${r.score}`]);
     }
-    if (!r.retake) rows.push([t('ui.stageScore'), `${r.score}/100`]);
+    const rowY = (i: number) => 56 + i * 10;
     rows.forEach(([a, b], i) => {
-      txt(this, 120, 60 + i * 11, a, { size: 8 });
-      txt(this, W - 120, 60 + i * 11, b, { size: 8, origin: [1, 0], color: COLORS.accent });
+      txt(this, 120, rowY(i), a, { size: 8 });
+      txt(this, W - 120, rowY(i), b, { size: 8, origin: [1, 0], color: COLORS.accent });
     });
+    if (!r.retake) {
+      const y = rowY(rows.length) + 2;
+      this.add.rectangle(120, y - 2, W - 240, 1, NUM(COLORS.dim)).setOrigin(0, 0);
+      txt(this, 120, y, t('ui.stageScore'), { size: 8, bold: true });
+      txt(this, W - 120, y, `${r.score}/100`, { size: 8, bold: true, origin: [1, 0], color: COLORS.accent });
+    }
 
     // Professor line.
     const line = oneLine(prof.id, r.cleared ? 'win' : 'fail');
@@ -110,7 +122,7 @@ export class ResultsScene extends Phaser.Scene {
       button(this, W / 2 + 80, H - 30, 140, 18, t('ui.backToCampus'), () => backToCampus(this));
     }
     unlocked = [...new Set(unlocked)];
-    unlocked.forEach((a, i) => txt(this, W / 2, 98 + i * 10, '★ ' + t('ui.achievement', { name: t(`achievements.${a}`) }), { size: 8, bold: true, origin: [0.5, 0.5], color: COLORS.accent }));
+    unlocked.forEach((a, i) => txt(this, W / 2, 148 + i * 10, '★ ' + t('ui.achievement', { name: t(`achievements.${a}`) }), { size: 8, bold: true, origin: [0.5, 0.5], color: COLORS.accent }));
     void courses;
   }
 

@@ -105,7 +105,10 @@
     "creditsTitle": "Mualliflar",
     "creditsBody": "CAU informatika talabalari uchun yaratilgan.\nSpritelar kodda chizilgan · Endesga 32 palitrasi · ovoz jonli sintez qilinadi.\nShrift: Noto Sans Mono (SIL Open Font License).\nDvigatel: Phaser 3 (MIT). Oʻqituvchilar faqat oʻyindagi ismlari bilan.\nMacCoffee va Nescafe faqat matn sifatida.",
     "back": "Orqaga",
-    "disclaimer": "Norasmiy talabalar oʻyini · Central Asian University bilan bogʻliq emas"
+    "disclaimer": "Norasmiy talabalar oʻyini · Central Asian University bilan bogʻliq emas",
+    "clearedPts": "Bosqich oʻtildi",
+    "sanityBonus": "Qolgan aql-hush: {n}",
+    "destroyedPct": "Yoʻq qilingan qogʻoz: {n}%"
   },
   "questCard": {
     "courseDescription": "Kurs tavsifi",

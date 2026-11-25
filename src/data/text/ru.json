@@ -105,7 +105,10 @@
     "creditsTitle": "Авторы",
     "creditsBody": "Сделано для студентов-программистов CAU.\nСпрайты нарисованы кодом · палитра Endesga 32 · звук синтезируется на лету.\nШрифт: Noto Sans Mono (SIL Open Font License).\nДвижок: Phaser 3 (MIT). Преподаватели — только под игровыми именами.\nMacCoffee и Nescafe — только текстом.",
     "back": "Назад",
-    "disclaimer": "Неофициальная студенческая игра · не связана с Central Asian University"
+    "disclaimer": "Неофициальная студенческая игра · не связана с Central Asian University",
+    "clearedPts": "Этап пройден",
+    "sanityBonus": "Осталось рассудка: {n}",
+    "destroyedPct": "Бумаги уничтожено: {n}%"
   },
   "questCard": {
     "courseDescription": "Описание курса",

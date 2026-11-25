@@ -685,14 +685,24 @@ class Game {
     term::write(std::string("\n  ") + col::gray + c.name + " — " + text_.t("questCard.components." + c.components[static_cast<size_t>(stage)].type) + " (" + std::to_string(c.components[static_cast<size_t>(stage)].weight) + "%)" + col::reset + "\n\n");
     const std::string head = r.cleared ? text_.t("ui.submitted") : r.mercy ? text_.t("ui.mercyPass") : text_.t("ui.retake");
     term::write(std::string("  ") + col::bold + (r.cleared ? col::green : r.mercy ? col::yellow : col::red) + head + col::reset + "\n\n");
+    // Every part of the stage score, so the total visibly adds up.
+    auto row = [&](const std::string& label, const std::string& pts, bool bold = false) {
+      std::string l = label;
+      l.resize(std::max<size_t>(l.size(), 30), ' ');  // pad before adding colour codes, so columns line up
+      term::write(std::string("  ") + (bold ? col::bold : "") + l + col::yellow + pts + col::reset + "\n");
+    };
     if (r.cleared) {
-      term::write("  " + text_.t("ui.sanityLeft") + ": " + std::to_string(r.sanityLeft) + "\n");
-      term::write("  " + (r.late ? text_.t("ui.lateSubmission") : text_.t("ui.onTime")) + "\n");
-      if (r.attendanceMissed) term::write("  " + text_.t("ui.missedAttendance") + "\n");
+      const Json& sc = data_.balance()["scoring"];
+      const int onTime = r.late ? 0 : sc["onTimeBonus"].integer(10);
+      const int attendance = r.attendanceMissed ? data_.balance()["hazards"]["attendance_sheet"]["penaltyIfMissed"].integer(5) : 0;
+      row(text_.t("ui.clearedPts"), std::to_string(sc["cleared"].integer(70)));
+      row(text_.t("ui.sanityBonus", {{"n", std::to_string(r.sanityLeft)}}), "+" + std::to_string(r.score - sc["cleared"].integer(70) - onTime + attendance));
+      row(r.late ? text_.t("ui.late") : text_.t("ui.onTime"), "+" + std::to_string(onTime));
+      if (attendance) row(text_.t("ui.attendanceMissedShort"), "-" + std::to_string(attendance));
     } else {
-      term::write("  " + text_.t("ui.destroyed") + ": " + fmtNum(r.destroyedFraction * 100) + "%\n");
+      row(text_.t("ui.destroyedPct", {{"n", fmtNum(r.destroyedFraction * 100)}}), r.mercy || r.retake ? "" : "+" + std::to_string(r.score));
     }
-    if (!r.retake) term::write("  " + text_.t("ui.stageScore") + ": " + col::yellow + std::to_string(r.score) + "/100" + col::reset + "\n");
+    if (!r.retake) row(text_.t("ui.stageScore"), std::to_string(r.score) + "/100", true);
     const Line l = oneLine(prof.id, r.cleared ? "win" : "fail");
     countTics(l, prof);
     term::write(std::string("\n  ") + col::yellow + prof.displayName + col::reset + ": " + formatLine(l) + "\n");
