@@ -66,7 +66,7 @@ export function courseForArena(arena: string): Course | undefined {
 // Arena rooms live in src/data/rooms/*.json and are picked up automatically.
 export interface Room {
   id: string; name: string; floor: string; size: XY;
-  playerStart: XY; spawns: XY[]; desks: number[][]; pickups: { type: string; at: XY }[];
+  playerStart: XY; exit?: XY; spawns: XY[]; desks: number[][]; pickups: { type: string; at: XY }[];
 }
 const roomModules = import.meta.glob('../data/rooms/*.json', { eager: true }) as Record<string, { default: Room }>;
 export const rooms: Record<string, Room> = {};

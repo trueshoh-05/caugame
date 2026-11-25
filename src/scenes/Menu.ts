@@ -9,6 +9,14 @@ import { MuteButton } from './HUD';
 import { buildCampus } from '../systems/MapBuilder';
 import { Analytics } from '../systems/Analytics';
 
+/** Running as an installed app (home-screen icon), so there are no browser bars. */
+function standalone(): boolean {
+  return (navigator as Navigator & { standalone?: boolean }).standalone === true || matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches;
+}
+function isAppleTouch(): boolean {
+  return /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
 export class MenuScene extends Phaser.Scene {
   constructor() { super('Menu'); }
 
@@ -35,6 +43,14 @@ export class MenuScene extends Phaser.Scene {
 
     let y = 160;
     const go = (fresh: boolean) => {
+      // Phones: go full screen where the browser allows it (Android, iPad). iPhone Safari does not
+      // allow it for web pages, so iPhones get the "Add to Home Screen" tip below instead.
+      if (Input.touchMode && !standalone()) {
+        const el = document.documentElement as HTMLElement & { requestFullscreen?: (o?: object) => Promise<void> };
+        el.requestFullscreen?.({ navigationUI: 'hide' })
+          .then(() => (screen.orientation as ScreenOrientation & { lock?: (o: string) => Promise<void> })?.lock?.('landscape'))
+          .catch(() => { /* not allowed here; the game still works */ });
+      }
       Analytics.once(fresh ? 'start' : 'resume', Input.touchMode ? 'phone' : 'desktop', getLang());
       Audio.unlock();
       if (fresh) Save.newSemester();
@@ -61,6 +77,9 @@ export class MenuScene extends Phaser.Scene {
       }, code === getLang() ? '#124e89' : COLORS.panel2);
       b.label.setFontSize(7);
     });
+    if (isAppleTouch() && !standalone()) {
+      txt(this, W / 2, 214, t('ui.homeScreenTip'), { size: 7, color: COLORS.cyan, origin: [0.5, 0.5] });
+    }
     txt(this, W / 2, H - 12, Input.touchMode ? t('ui.howToPlayTouch') : t('ui.howToPlay'), { size: 7, color: COLORS.dim, origin: [0.5, 0.5], wrap: 460, align: 'center' });
     // Achievements & reset
     if (d.achievements.length) {

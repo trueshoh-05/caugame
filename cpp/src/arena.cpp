@@ -395,8 +395,9 @@ void ArenaSim::onCleared() {
   toast("ui.stageCleared", ToneGreen);
   // The submission portal; at "23:58" the portal is down (503) for a few seconds.
   hasExit_ = true;
-  exitX_ = bounds_.x + bounds_.w / 2;
-  exitY_ = bounds_.y + 6;
+  // From the room data, so it is reachable and away from the top edge (browser bars on phones).
+  exitX_ = (room_.exitX >= 0 ? room_.exitX : room_.startX) * kTile + 8;
+  exitY_ = (room_.exitY >= 0 ? room_.exitY : room_.startY) * kTile + 8;
   const bool down = deadline_ > 0 && deadline_ < A_["portalDownBelowSeconds"].num(3);
   exitLockedUntil_ = down ? now_ + B_["hazards"]["portal_down"]["exitLockedSeconds"].num(5) : 0;
   portalWasDown_ = down;

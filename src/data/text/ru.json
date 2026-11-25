@@ -108,7 +108,8 @@
     "disclaimer": "Неофициальная студенческая игра · не связана с Central Asian University",
     "clearedPts": "Этап пройден",
     "sanityBonus": "Осталось рассудка: {n}",
-    "destroyedPct": "Бумаги уничтожено: {n}%"
+    "destroyedPct": "Бумаги уничтожено: {n}%",
+    "homeScreenTip": "Во весь экран на iPhone: Поделиться → На экран «Домой»"
   },
   "questCard": {
     "courseDescription": "Описание курса",

@@ -108,7 +108,8 @@
     "disclaimer": "Unofficial student game · not affiliated with Central Asian University",
     "clearedPts": "Stage cleared",
     "sanityBonus": "Sanity left: {n}",
-    "destroyedPct": "Paper destroyed: {n}%"
+    "destroyedPct": "Paper destroyed: {n}%",
+    "homeScreenTip": "Full screen on iPhone: Share → Add to Home Screen"
   },
   "questCard": {
     "courseDescription": "Course description",

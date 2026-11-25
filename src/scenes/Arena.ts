@@ -150,7 +150,8 @@ export class ArenaScene extends Phaser.Scene {
       coffee: Input.consume('coffee'), dash: Input.consume('dash'), help: Input.consume('help'),
       reload: Input.keys.has('KeyR'),
     });
-    Input.consume('interact');
+    // Submit from anywhere once the stage is cleared: E on a keyboard, the Submit button on a phone.
+    if (Input.consume('interact') && this.st.hasExit && !this.st.exitLocked) this.sim.submit();
     this.st = this.sim.state();
     this.handleEvents(this.sim.events());
     this.render();
@@ -226,6 +227,7 @@ export class ArenaScene extends Phaser.Scene {
       mode: 'arena', sanity: s.sanity, sanityMax: s.sanityMax, deadline: s.deadline, frozen: s.frozen, late: s.late,
       clip: s.clip, clipMax: s.clipMax, reloading: s.reloading, maccoffee: s.maccoffee, nescafe: s.nescafe,
       assistReady: s.assistReady, shield: s.shield, bossHp: b ? b.hp : 0, bossMax: b ? b.max : 0,
+      interact: s.hasExit && !s.exitLocked ? t('ui.submit') : '',
     });
     const df = 1 - Math.max(0, s.deadline) / s.deadlineMax;
     Audio.setSpeed(1 + 0.6 * Math.pow(Math.max(0, df - 0.5) * 2, 2));

@@ -44,6 +44,7 @@ struct Room {
   std::string id, name, floor;
   int width = 30, height = 17;
   int startX = 15, startY = 13;
+  int exitX = -1, exitY = -1;  // where the Submit portal appears (tile); -1 = at the player start
   std::vector<std::pair<int, int>> spawns;
   std::vector<Rect> desks;  // in tiles
   std::vector<RoomPickup> pickups;

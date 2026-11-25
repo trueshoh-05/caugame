@@ -457,7 +457,8 @@ export class ArenaTsScene extends Phaser.Scene {
     Audio.play('win');
     this.hud('toast', t('ui.stageCleared'), COLORS.green);
     // Submission portal; at 23:58 the portal is down (503) for a few seconds.
-    const x = this.bounds.x + this.bounds.w / 2, y = this.bounds.y + 6;
+    const at = this.room.exit ?? this.room.playerStart;
+    const x = at[0] * TS + 8, y = at[1] * TS + 8;
     const c = this.add.container(x, y).setDepth(9900);
     const box = this.add.rectangle(0, 0, 54, 18, 0x124e89).setStrokeStyle(1, 0x2ce8f5);
     const label = txt(this, 0, 0, t('ui.submit'), { size: 7, bold: true, origin: [0.5, 0.5] });
@@ -522,7 +523,7 @@ export class ArenaTsScene extends Phaser.Scene {
     pl.updateMove(dt);
     if (Input.consume('help')) this.callProfessor();
     if (Input.consume('coffee')) this.throwCoffee();
-    Input.consume('interact');
+    if (Input.consume('interact') && this.exit && this.time.now >= this.exit.lockedUntil) this.submit();
     if (Input.keys.has('KeyR') && this.reload <= 0 && this.clip < this.clipMax) { this.reload = this.reloadTime; Audio.play('reload'); }
     this.fire(dt);
 
@@ -573,6 +574,7 @@ export class ArenaTsScene extends Phaser.Scene {
       late: this.late, clip: this.clip, clipMax: this.clipMax, reloading: this.reload > 0, maccoffee: save.ammo.maccoffee,
       nescafe: save.ammo.nescafe, assistReady: !this.assistUsed, shield: this.shield,
       bossHp: this.boss ? this.boss.hp : 0, bossMax: this.boss ? this.boss.maxHp : 0,
+      interact: this.exit && this.time.now >= this.exit.lockedUntil ? t('ui.submit') : '',
     });
   }
 

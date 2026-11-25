@@ -108,7 +108,8 @@
     "disclaimer": "Norasmiy talabalar oʻyini · Central Asian University bilan bogʻliq emas",
     "clearedPts": "Bosqich oʻtildi",
     "sanityBonus": "Qolgan aql-hush: {n}",
-    "destroyedPct": "Yoʻq qilingan qogʻoz: {n}%"
+    "destroyedPct": "Yoʻq qilingan qogʻoz: {n}%",
+    "homeScreenTip": "iPhone’da toʻliq ekran: Ulashish → Bosh ekranga"
   },
   "questCard": {
     "courseDescription": "Kurs tavsifi",

@@ -75,6 +75,7 @@ void GameData::load(const std::string& enemies, const std::string& courses, cons
     rm.id = e["id"].str(); rm.name = e["name"].str(); rm.floor = e["floor"].str();
     rm.width = e["size"][0].integer(30); rm.height = e["size"][1].integer(17);
     rm.startX = e["playerStart"][0].integer(); rm.startY = e["playerStart"][1].integer();
+    rm.exitX = e["exit"][0].integer(-1); rm.exitY = e["exit"][1].integer(-1);
     for (const Json& s : e["spawns"].elements()) rm.spawns.emplace_back(s[0].integer(), s[1].integer());
     for (const Json& d : e["desks"].elements()) rm.desks.push_back({d[0].num(), d[1].num(), d[2].num(), d[3].num()});
     for (const Json& pk : e["pickups"].elements()) rm.pickups.push_back({pk["type"].str(), pk["at"][0].integer(), pk["at"][1].integer()});
