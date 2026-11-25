@@ -6,6 +6,7 @@ import { Save } from '../systems/Save';
 import { t } from '../systems/Language';
 import { Audio } from '../systems/Audio';
 import { Input } from '../systems/Input';
+import { Analytics } from '../systems/Analytics';
 import { COLORS, H, NUM, W, button, panel, setupCamera, txt } from '../ui';
 
 export interface StageResult {
@@ -59,6 +60,9 @@ export class ResultsScene extends Phaser.Scene {
         }
       });
     }
+    const stageType = course.components[r.stageIndex].type;
+    Analytics.event(r.cleared ? 'stage-clear' : r.mercy ? 'stage-mercy' : 'stage-fail', r.courseId, stageType);
+    if (this.courseDone) Analytics.event('course-complete', r.courseId, Save.get().results[r.courseId].letter);
     Audio.music(r.cleared || r.mercy ? 'results' : 'retake');
     Audio.play(r.cleared ? 'win' : 'buzz');
 

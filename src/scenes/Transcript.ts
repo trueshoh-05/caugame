@@ -7,6 +7,7 @@ import { Audio } from '../systems/Audio';
 import { Input } from '../systems/Input';
 import { COLORS, H, NUM, W, button, setupCamera, txt } from '../ui';
 import { Debug } from '../debug';
+import { Analytics } from '../systems/Analytics';
 
 /** End of semester: the transcript, GPA, and a shareable PNG of it. */
 export class TranscriptScene extends Phaser.Scene {
@@ -45,6 +46,7 @@ export class TranscriptScene extends Phaser.Scene {
     if (d.achievements.length) txt(this, W / 2, y + 36, d.achievements.map((a) => '★ ' + t(`achievements.${a}`)).join('   '), { size: 7, color: '#be4a2f', origin: [0.5, 0.5] });
     txt(this, W - 38, H - 50, `${t('ui.credits')}: ${d.credits}`, { size: 6, color: '#8b9bb4', origin: [1, 1] });
     Debug.lastGpa = g;
+    Analytics.once('semester-complete', `gpa-${Math.floor(g)}`);
 
     button(this, W / 2 - 80, H - 22, 140, 16, t('ui.share'), () => this.share(), '#124e89');
     button(this, W / 2 + 80, H - 22, 140, 16, t('ui.playAgain'), () => { Save.newSemester(); this.scene.start('Menu'); });

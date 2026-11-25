@@ -1,0 +1,6 @@
+{
+  "_about": "Anonymous visit and event counting with GoatCounter (no cookies, no personal data). Counting runs only on the hosts listed here, never in development, tests (?debug) or the one-file build. Dashboard: https://trueshoh.goatcounter.com",
+  "endpoint": "https://trueshoh.goatcounter.com/count",
+  "script": "https://gc.zgo.at/count.js",
+  "hosts": ["causurvivor.uz", "www.causurvivor.uz", "trueshoh-05.github.io"]
+}

@@ -64,6 +64,10 @@ it analyses the repository, serves the production build and plays it in headless
 prioritised feedback to `scorer/reports/gen-N.md` and a row to `scorer/HISTORY.md`.
 See `scorer/README.md` for the criteria and the improvement log.
 
+## Analytics
+
+On the public site (causurvivor.uz) visits and a few anonymous game milestones (game started, course accepted, stage cleared or failed, course and semester completed) are counted with [GoatCounter](https://www.goatcounter.com): no cookies, no names, nothing personal. Counting is off in development, in tests (`?debug`) and in the one-file build. Settings: `src/data/analytics.json`.
+
 ## Credits
 
 See [CREDITS.md](CREDITS.md). Professors appear only under their in-game names.

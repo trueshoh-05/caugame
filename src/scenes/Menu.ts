@@ -7,6 +7,7 @@ import { courses, getCourse } from '../systems/Data';
 import { COLORS, H, NUM, W, button, setupCamera, txt } from '../ui';
 import { MuteButton } from './HUD';
 import { buildCampus } from '../systems/MapBuilder';
+import { Analytics } from '../systems/Analytics';
 
 export class MenuScene extends Phaser.Scene {
   constructor() { super('Menu'); }
@@ -34,6 +35,7 @@ export class MenuScene extends Phaser.Scene {
 
     let y = 160;
     const go = (fresh: boolean) => {
+      Analytics.once(fresh ? 'start' : 'resume', Input.touchMode ? 'phone' : 'desktop', getLang());
       Audio.unlock();
       if (fresh) Save.newSemester();
       this.scene.start('Campus');
@@ -54,6 +56,7 @@ export class MenuScene extends Phaser.Scene {
       const x = W / 2 + (i - (LANGS.length - 1) / 2) * 64;
       const b = button(this, x, y, 60, 14, LANG_NAMES[code], () => {
         setLang(code); Save.update((s) => { s.lang = code; });
+        Analytics.event('language', code);
         this.scene.restart();
       }, code === getLang() ? '#124e89' : COLORS.panel2);
       b.label.setFontSize(7);

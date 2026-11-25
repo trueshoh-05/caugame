@@ -103,7 +103,7 @@
     "nameLabel": "Name: {name}",
     "noName": "Student",
     "creditsTitle": "Credits",
-    "creditsBody": "Made for CAU computer science students.\nSprites drawn in code · Endesga 32 palette · sound synthesised live.\nFont: Noto Sans Mono (SIL Open Font License).\nEngine: Phaser 3 (MIT). Professors appear only under their in-game names.\nMacCoffee and Nescafe appear as text only.",
+    "creditsBody": "Made for CAU computer science students.\nSprites drawn in code · Endesga 32 palette · sound synthesised live.\nFont: Noto Sans Mono (SIL Open Font License).\nEngine: Phaser 3 (MIT). Professors appear only under their in-game names.\nMacCoffee and Nescafe appear as text only.\nVisits and game milestones are counted anonymously (GoatCounter, no cookies).",
     "back": "Back",
     "disclaimer": "Unofficial student game · not affiliated with Central Asian University",
     "clearedPts": "Stage cleared",

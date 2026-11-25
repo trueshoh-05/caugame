@@ -10,6 +10,7 @@ import { CampusScene } from './scenes/Campus';
 import { ArenaScene } from './scenes/Arena';
 import { ArenaTsScene } from './scenes/ArenaTs';
 import { Core, initCore } from './core/Core';
+import { Analytics } from './systems/Analytics';
 import { DialogScene } from './scenes/Dialog';
 import { HUDScene } from './scenes/HUD';
 import { QuestCardScene } from './scenes/QuestCard';
@@ -40,4 +41,5 @@ game.events.once(Phaser.Core.Events.READY, () => {
 });
 }
 
+Analytics.init();
 void initCore().then(start);

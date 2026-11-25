@@ -15,6 +15,7 @@ audio or font files.
 | C++ to WebAssembly compiler (build-time only) | [Emscripten](https://emscripten.org) | MIT / University of Illinois NCSA |
 | Sprites, tiles, paper enemies, professors | Original pixel grids in `src/art/` | Part of this project |
 | Sound effects and music | Synthesised in code | Part of this project |
+| Anonymous visit counting (public site only) | [GoatCounter](https://www.goatcounter.com) — no cookies, no personal data; dashboard at trueshoh.goatcounter.com | Hosted service, loaded at runtime |
 | Campus layout | Traced from the official CAU 2D campus plan (`reference/`) | Used for a student project |
 
 "MacCoffee" and "Nescafe" appear as text only; the sachet and cup drawings are original and carry no logos.

@@ -8,6 +8,7 @@ import { t, raw } from '../systems/Language';
 import { Audio } from '../systems/Audio';
 import { Input } from '../systems/Input';
 import { Debug } from '../debug';
+import { Analytics } from '../systems/Analytics';
 import { COLORS, RENDER_SCALE, floatText, txt } from '../ui';
 import { HudState } from './HUD';
 import type { DialogData } from './Dialog';
@@ -191,6 +192,7 @@ export class CampusScene extends Phaser.Scene {
       this.scene.launch('QuestCard', {
         courseId: course.id,
         onAccept: () => {
+          Analytics.event('course-accept', course.id);
           Save.update((s) => { if (!s.accepted.includes(course.id)) s.accepted.push(course.id); });
           Audio.play('ding');
           this.scene.resume();
