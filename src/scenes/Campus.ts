@@ -78,6 +78,9 @@ export class CampusScene extends Phaser.Scene {
   private onWake(): void {
     this.busy = false;
     Input.clear();
+    // Back from a room: forget the wall contact that got us in, and don't let the door fire again at once.
+    (this.player.body as Phaser.Physics.Arcade.Body).reset(this.player.x, this.player.y);
+    this.lastDoorMsg = this.time.now;
     Audio.music('campus');
     HudState.mode = 'campus';
     this.scene.launch('HUD');
@@ -275,9 +278,12 @@ export class CampusScene extends Phaser.Scene {
     HudState.interact = best ? (Input.touchMode ? best.label.replace(/^E:\s*/, '') : best.label) : '';
     if (Input.consume('interact') && best) best.act();
     else if (best && best.label === t('ui.enter') && this.time.now - this.lastDoorMsg > 1500) {
-      // Walking into a door also uses it.
+      // Walking into a door also uses it, but only while the player is actually pushing a direction:
+      // the physics "blocked" flags are stale right after returning from a room.
       const body = this.player.body as Phaser.Physics.Arcade.Body;
-      if (bd < 12 && (body.blocked.left || body.blocked.right || body.blocked.up || body.blocked.down)) { this.lastDoorMsg = this.time.now; best.act(); }
+      const mv = Input.move();
+      const pushing = Math.hypot(mv.x, mv.y) > 0.3;
+      if (pushing && bd < 12 && (body.blocked.left || body.blocked.right || body.blocked.up || body.blocked.down)) { this.lastDoorMsg = this.time.now; best.act(); }
     }
     Input.consume('help'); Input.consume('coffee'); Input.consume('pause');
   }
